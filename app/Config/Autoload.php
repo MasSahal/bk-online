@@ -42,6 +42,11 @@ class Autoload extends AutoloadConfig
 	public $psr4 = [
 		APP_NAMESPACE => APPPATH, // For custom app namespace
 		'Config'      => APPPATH . 'Config',
+		// 'PHPExcel'      => ROOTPATH . 'vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet',
+		// 'PhpSheet'    => APPPATH . 'ThirdParty/phpsheet',
+		// 'Options'      => APPPATH . 'ThirdParty/pdf/dompdf/src/Options.php',
+
+
 	];
 
 	/**

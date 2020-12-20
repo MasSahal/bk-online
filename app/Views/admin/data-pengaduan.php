@@ -31,6 +31,52 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                <div class="box-content notika-shadow mg-t-30">
+                    <div class="curved-inner-pro">
+                        <div class="curved-ctn">
+                            <h4>Filter Data Riwayat</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <form action="" method="GET" id="cari_data_riwayat">
+                        <div class=" row">
+                            <div class="col-lg-3 mt-2">
+                                <div class="form-group nk-datapk-ctm form-elet-mg">
+                                    <label>Nama</label>
+                                    <div class=" input-group nk-int-st">
+                                        <span class="input-group-addon"></span>
+                                        <input type="text" class="form-control" name="nama" placeholder="Masukan nama..." autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 mt-2">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                                    <label>Tanggal Awal</label>
+                                    <div class=" input-group date nk-int-st">
+                                        <span class="input-group-addon"></span>
+                                        <input type="text" class="form-control" name="awal" placeholder="yyyy/mm/dd" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 mt-2">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                                    <label>Tanggal Akhir</label>
+                                    <div class=" input-group date nk-int-st">
+                                        <span class="input-group-addon"></span>
+                                        <input type="text" class="form-control" name="akhir" placeholder="dd/mm/yyyy" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 mt-2">
+                                <!-- <label>&nbsp;</label> -->
+                                <div class="text-left mt-4">
+                                    <a href="<?= base_url('admin/data-riwayat'); ?>" class=" btn btn-success notika-btn-success">Refresh</a> &nbsp;
+                                    <button type="submit" class="btn btn-primary notika-btn-primary" id="tombol_cari_data"> Cari Data</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="box-content nk-green notika-shadow mg-tb-30">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover" id="data-table-basic">
@@ -46,36 +92,20 @@
                             <tbody>
                                 <?php
                                 $i = 0;
-                                foreach ($list_pengaduan as $r) : ?>
-                                    <tr id="<?= $r->id ?>">
+                                foreach ($pengaduan as $p) : ?>
+                                    <tr id="<?= $p->id ?>">
                                         <td><?= $i += 1; ?></td>
-                                        <td><?= $r->nama ?></td>
-                                        <td><?= $r->subjek ?></td>
-                                        <td><?= date("D, d M Y", strtotime($r->tanggal)) ?></td>
+                                        <td><?= $p->nama ?></td>
+                                        <td><?= get_small_char($p->subjek, 30) ?></td>
+                                        <td><?= tanggal($p->tanggal) ?></td>
                                         <td>
-                                            <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#hapus_<?= $r->id ?>">Hapus</button>
-                                            <button type="button" class="badge badge-default" data-toggle="modal" data-target="#detail_<?= $r->id ?>">Detail</button>
+                                            <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#hapus_<?= $p->id ?>"><i class="fa fa-trash-o"></i></button>
+                                            <button type="button" class="badge badge-default" data-toggle="modal" data-target="#detail_<?= $p->id ?>"><i class="fa fa-eye"></i></button>
                                         </td>
                                     </tr>
 
-                                    <!-- modal lampiran -->
-                                    <div class="modal fade" id="lampiran_<?= $r->id ?>" role="dialog">
-                                        <div class="modal-dialog modals-default">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h2><?= $r->subjek ?></h2>
-                                                    <hr>
-                                                    <img src="<?= base_url("/public/pengaduan/" . $r->lampiran) ?>" alt="$r->lampiran">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <!-- modal detail pengaduan -->
-                                    <div class="modal fade" id="detail_<?= $r->id ?>" role="dialog">
+                                    <div class="modal fade" id="detail_<?= $p->id ?>" role="dialog">
                                         <div class="modal-dialog modals-default">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -85,16 +115,16 @@
                                                 <div class="modal-body">
                                                     <div class="view-mail-hd">
                                                         <div class="view-mail-hrd">
-                                                            <h4><?= $r->subjek ?></h4>
+                                                            <h4><?= $p->subjek ?></h4>
                                                         </div>
                                                         <div class="view-ml-rl">
-                                                            <p><?= time_elapsed_string($r->tanggal) ?></p>
+                                                            <p><?= time_elapsed_string($p->tanggal) ?></p>
                                                         </div>
                                                     </div>
-                                                    <small><?= $r->nama ?> | <?= $r->tanggal ?></small>
+                                                    <small><?= $p->nama ?> | <?= $p->tanggal ?></small>
                                                     <hr>
-                                                    <img src="<?= base_url("/public/pengaduan/" . $r->lampiran) ?>" alt="<?= $r->lampiran ?>">
-                                                    <p class="pt-2"><?= str_replace(array("\r\n", "\r", "\n"), "<br/>", $r->deskripsi) ?></p>
+                                                    <img src="<?= base_url("/public/pengaduan/" . $p->lampiran) ?>" alt="<?= $p->lampiran ?>">
+                                                    <p class="pt-2"><?= str_replace(array("\r\n", "\r", "\n"), "<br/>", $p->deskripsi) ?></p>
                                                 </div>
                                                 <!-- <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -104,12 +134,12 @@
                                     </div>
 
                                     <!-- modal konfirmasi hapus -->
-                                    <div class="modal fade" id="hapus_<?= $r->id ?>" role="dialog">
+                                    <div class="modal fade" id="hapus_<?= $p->id ?>" role="dialog">
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-content">
                                                 <div class="modal-body">
                                                     <center>
-                                                        <h4> Yakin ingin menghapus pengaduan "<span class="text-warning"><?= $r->subjek ?></span>" ?</h4>
+                                                        <h4> Yakin ingin menghapus pengaduan "<span class="text-warning"><?= $p->subjek ?></span>" ?</h4>
                                                         <div class="my-3">
                                                             <img src="<?= base_url("/public/img/alert.png") ?>" alt="alert1.png">
                                                         </div>
@@ -119,7 +149,7 @@
                                                 <div class="modal-footer">
                                                     <center>
                                                         <button type="button" data-dismiss="modal" class="btn btn-success btn-md notika-btn-success">Batalkan</button>
-                                                        <a href="<?= base_url("/proses/delete_pengaduan/" . $r->id)  ?>" class="btn btn-danger btn-md notika-btn-danger">Hapus</a>
+                                                        <a href="<?= base_url("/proses/delete_pengaduan/" . $p->id)  ?>" class="btn btn-danger btn-md notika-btn-danger">Hapus</a>
                                                     </center>
                                                 </div>
                                             </div>
@@ -130,45 +160,15 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="pt-3">
-                        <button type="button" class="btn btn-success notika-btn-success" data-toggle="modal" data-target="#tambah_pengaduan">Tambah Pengaduan</button> &nbsp;
-                        <button type="button" class="btn btn-warning notika-btn-warning" data-toggle="modal" data-target="#reset_pengaduan">Reset Semua</button>
+                    <div class="pt-3 material-design-btn">
+                        <button type="button" class="btn btn-success notika-btn-success" data-toggle="modal" data-target="#tambah">Tambah</button>
+                        &nbsp;
+                        <span data-toggle="tooltip" data-placement="bottom" title="Reset semua data"><button type="button" class="btn btn-warning warning-icon-notika" data-toggle="modal" data-target="#reset">Reset All</button></span>
+                        &nbsp;
+                        <a href="<?= base_url('admin/data-pengaduan-pdf?nama=' . $nama . '&awal=' . $awal . '&akhir=' . $akhir); ?>" target="_blank" class="btn btn-lightblue lightblue-icon-notika" data-toggle="tooltip" data-placement="bottom" title="Export to Pdf">Pdf</a>
+                        &nbsp;
+                        <a href="<?= base_url('admin/data-pengaduan-excell?nama=' . $nama . '&awal=' . $awal . '&akhir=' . $akhir); ?>" target="_blank" class="btn btn-teal teal-icon-notika" data-toggle="tooltip" data-placement="bottom" title="Export to Excell">Excell</a>
                     </div>
-                    <!-- <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="data-table-basic">
-                            <thead style="color:#fff;background:#bbbbbb">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Subjek</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i = 0;
-                                foreach ($list_pengaduan as $r) : ?>
-                                    <tr id="<?= $r->id ?>">
-                                        <td><?= $i += 1; ?></td>
-                                        <td><?= $r->subjek ?></td>
-                                        <td><?= $r->status ?></td>
-                                        <td>
-                                            <?php if ($r->status == 'Menunggu') { ?>
-                                                <button type="button" class="badge badge-success" data-toggle="modal" data-target="#detail<?= $r->id ?>">Terima</button>
-                                                <button type="button" class="badge badge-warning" data-toggle="modal" data-target="#detail<?= $r->id ?>">Tolak</button>
-
-                                            <?php } else { ?>
-                                                <a href="<?= base_url("/proses/delete_pengaduan/" . $r->id)  ?>" class="badge badge-danger">Hapus</a>
-                                                <button type="button" class="badge badge-default" data-toggle="modal" data-target="#detail<?= $r->id ?>">Detail</button>
-
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach ?>
-
-                            </tbody>
-                        </table>
-                    </div> -->
                 </div>
             </div>
 
@@ -177,7 +177,7 @@
                     <h5>Pengaduan Siswa</h5>
                     <hr>
                     <center>
-                        <h4 class="counter"><?= $pengaduan ?></h4>
+                        <h4 class="counter"><?= $jml_pengaduan ?></h4>
                     </center>
                 </div>
 
@@ -201,7 +201,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="reset_pengaduan" role="dialog">
+    <div class="modal fade" id="reset" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -228,7 +228,7 @@
     <!-- End Sale Statistic area-->
 
     <!-- modal tambah pengaduan -->
-    <div class="modal fade" id="tambah_pengaduan" role=" dialog">
+    <div class="modal fade" id="tambah" role=" dialog">
         <div class="modal-dialog modals-default">
             <div class="modal-content">
                 <div class="modal-header">
@@ -244,8 +244,8 @@
                                 <select class="selectpicker" name="nis">
                                     <option value="0">Pilih Siswa</option>
 
-                                    <?php foreach ($list_siswa as $r) : ?>
-                                        <option value="<?= $r->nis ?>"><?= $r->username ?></option>
+                                    <?php foreach ($list_siswa as $p) : ?>
+                                        <option value="<?= $p->nis ?>"><?= $p->nama ?></option>
 
                                     <?php endforeach ?>
                                 </select>

@@ -15,7 +15,7 @@
                                     <i class="notika-icon notika-house"></i>
                                 </div>
                                 <div class="breadcomb-ctn">
-                                    <h2>Selamat Datang <?= $_SESSION['username'] ?> Di Aplikasi Bk Online</h2>
+                                    <h2>Selamat Datang <?= session('nama') ?> Di Aplikasi Bk Online</h2>
                                     <hr>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="my-3">
                         <h3><?= $edukasi->judul ?></h3>
-                        <small>Admin | <?= time_elapsed_string($edukasi->waktu_upload) ?></small>
+                        <small>Admin | <?= time_elapsed_string($edukasi->created_at) ?></small>
                     </div>
                     <p class="pt-2"><?= str_replace(array("\r\n", "\r", "\n"), "<br/>", $edukasi->deskripsi) ?></p>
                 </div>

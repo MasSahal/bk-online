@@ -137,7 +137,7 @@
                                 <option value="0">Pilih Nama Siswa</option>
 
                                 <?php foreach ($siswa as $r) : ?>
-                                    <option value="<?= $r->id ?>"><?= $r->username ?></option>
+                                    <option value="<?= $r->id ?>"><?= $r->nama ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>

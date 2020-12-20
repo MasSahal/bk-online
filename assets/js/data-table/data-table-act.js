@@ -1,8 +1,7 @@
 (function ($) {
- "use strict";
-	
-	$(document).ready(function() {
-		 $('#data-table-basic').DataTable();
-	});
- 
-})(jQuery); 
+  "use strict";
+
+  $(document).ready(function () {
+    $("#data-table-basic").DataTable();
+  });
+})(jQuery);

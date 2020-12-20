@@ -13,16 +13,6 @@ class Home extends BaseController
 	public $faqModel;
 
 	//--------------------------------------------------------------------
-	//CONSTRUCT
-	//--------------------------------------------------------------------
-	public function __construct()
-	{
-		// $this->session = \Config\Services::session();
-		// $this->db = \Config\Database::connect();
-		// $this->faqModel = new \App\Models\Faq();
-	}
-
-	//--------------------------------------------------------------------
 	//INDEX DEFAULT
 	//--------------------------------------------------------------------
 	public function index()
@@ -31,18 +21,19 @@ class Home extends BaseController
 	}
 
 	//--------------------------------------------------------------------
+	//VIEW DAFTAR - SISWA
+	//--------------------------------------------------------------------
+	public function daftar()
+	{
+		$data['title'] = "Daftar Siswa";
+		return view('register', $data);
+	}
+
+	//--------------------------------------------------------------------
 	//VIEW ABOUT - SISWA
 	//--------------------------------------------------------------------
 	public function about()
 	{
-		if (isset($_SESSION['is_login'])) {
-			if ($_SESSION['is_login'] == 'admin') {
-				return redirect()->to(previous_url());
-			}
-		} else {
-			return redirect()->to(previous_url());
-		}
-
 		$data['active'] 		= "Lainnya";
 		$data['title']  		= "About";
 		return view('siswa/about');
@@ -53,13 +44,7 @@ class Home extends BaseController
 	//--------------------------------------------------------------------
 	public function faq()
 	{
-		if (isset($_SESSION['is_login'])) {
-			if ($_SESSION['is_login'] == 'admin') {
-				return redirect()->to(previous_url());
-			}
-		} else {
-			return redirect()->to(previous_url());
-		}
+
 
 		$data['active'] 		= "Lainnya";
 		$data['title']  		= "FAQ";
@@ -97,6 +82,34 @@ class Home extends BaseController
 		}
 	}
 
+
+	public function forgotPassword()
+	{
+		$email = \Config\Services::email();
+		$config['protocol'] = 'sendmail';
+		$config['mailPath'] = '/usr/sbin/sendmail';
+		$config['charset']  = 'iso-8859-1';
+		$config['wordWrap'] = true;
+
+		$email->initialize($config);
+
+		$email->setFrom('handyvidic28@gmail.com', 'Your Name');
+		$email->setTo($this->request->getPost('email'));
+		$email->setCC('another@another-example.com');
+		$email->setBCC('them@their-example.com');
+
+		$email->setSubject('Email Test');
+		$email->setMessage('Testing the email class.Lupa password');
+
+		$email->send();
+		if ($email) {
+			$this->session->setFlashdata('msg_suc', 'Berhasil kirim !');
+			return redirect()->to(base_url());
+		} else {
+			$this->session->setFlashdata('msg_err', 'Request time error !');
+			return redirect()->to(base_url());
+		}
+	}
 
 
 	//--------------------------------------------------------------------

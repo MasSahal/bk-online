@@ -67,7 +67,7 @@
           <div class="input-group">
             <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
             <div class="nk-int-st">
-              <input type="text" name="username" class="form-control" placeholder="Username">
+              <input type="text" name="nama" class="form-control" placeholder="nama">
             </div>
           </div>
           <div class="input-group mg-t-15">

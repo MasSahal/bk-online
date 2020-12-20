@@ -81,7 +81,7 @@
 						</div>
 					</div>
 					<div class="fm-checkbox">
-						<span>Belum punya akun? Daftar <a href="<?= base_url() ?>/siswa/daftar">Disini</a></span>
+						<span>Belum punya akun? Daftar <a href="<?= base_url() ?>/register">Disini</a></span>
 					</div>
 
 					<button type="submit" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
@@ -127,21 +127,24 @@
 		<!-- Forgot Password -->
 		<div class="nk-block" id="l-forget-password">
 			<div class="nk-form">
-				<p class="text-left">Masukan email yang terdaftar untuk melakukan reset password</p>
+				<form action="<?= base_url('/forgot-pass') ?>" method="post">
 
-				<div class="input-group">
-					<span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
-					<div class="nk-int-st">
-						<input type="text" class="form-control" placeholder="Email Address" required>
+					<p class="text-left">Masukan email yang terdaftar untuk melakukan reset password</p>
+
+					<div class="input-group">
+						<span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
+						<div class="nk-int-st">
+							<input type="text" class="form-control" placeholder="Email Address" name="email" required>
+						</div>
 					</div>
-				</div>
 
-				<a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow"></i></a>
+					<button type="submit" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
+				</form>
 			</div>
 
 			<div class="nk-navigation nk-lg-ic rg-ic-stl">
 				<a href="" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span>Sign in</span></a>
-				<a href="" data-ma-action="nk-login-switch" data-ma-block="#l-register"><i class="notika-icon notika-plus-symbol"></i> <span>Register</span></a>
+				<a href="<?= base_url('/register') ?>" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-plus-symbol"></i> <span>Register</span></a>
 			</div>
 		</div>
 	</div>

@@ -60,11 +60,11 @@
                                         <td><?= $r->nama ?></td>
                                         <td><?= $r->email ?></td>
                                         <td><?= $r->jenis_kelamin ?></td>
-                                        <td><?= date("D, d M Y", strtotime($r->date_created)) ?></td>
+                                        <td><?= date("D, d M Y", strtotime($r->created_at)) ?></td>
                                         <td>
-                                            <button type="button" class="badge badge-default" data-toggle="modal" data-target="#edit_pw_admin_<?= $r->id ?>">Edit Pass</button>
-                                            <button type="button" class="badge badge-warning" data-toggle="modal" data-target="#edit_admin_<?= $r->id ?>">Edit</button>
-                                            <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#hapus_<?= $r->id ?>">Hapus</button>
+                                            <button type="button" class="badge badge-default" data-toggle="modal" data-target="#edit_pw_admin_<?= $r->id ?>"><i class="fa fa-lock"></i></button>
+                                            <button type="button" class="badge badge-warning" data-toggle="modal" data-target="#edit_admin_<?= $r->id ?>"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#hapus_<?= $r->id ?>"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
 
@@ -202,6 +202,7 @@
                                                                     <div class="col-lg-9 col-md-7 col-sm-7 col-xs-12">
                                                                         <div class="nk-int-st">
                                                                             <input type="text" name="password" class="form-control" placeholder="Masukan password" value="<?= $r->password ?>" required disabled>
+                                                                            <input type="hidden" name="nama" value="<?= $r->nama ?>">
                                                                             <input type="hidden" name="id" value="<?= $r->id ?>">
                                                                         </div>
                                                                     </div>
@@ -509,21 +510,6 @@
                         <img src="<?= base_url("") ?>/assets/img/logo/logo-fhd.png" style="margin-bottom:10px; height:50px !important;" alt="bk online logo">
                         <h5>Pendaftaran Admin</h5>
                     </center>
-                    <div class="form-example-int form-horizental">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Kode Admin</label>
-                                </div>
-                                <div class="col-lg-10 col-md-7 col-sm-7 col-xs-12">
-                                    <div class="nk-int-st">
-                                        <input type="number" name="kode_admin" class="form-control" placeholder="Masukan Kode Admin">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-example-int form-horizental">
                         <div class="form-group">
                             <div class="row">

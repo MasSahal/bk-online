@@ -13,39 +13,33 @@ class SiswaController extends BaseController
 	protected $siswaModel;
 	protected $pelanggaranModel;
 	public  $validasi;
-	public  $db;
 
 	//--------------------------------------------------------------------
 	//VIEW DASHBOARD SISWA
 	//--------------------------------------------------------------------
 	public function index()
 	{
-		if (isset($_SESSION['is_login'])) {
-			//jika yg login bukan admin
-			if ($_SESSION['is_login'] == 'admin') {
-				return redirect()->to(previous_url());
-			}
-		} else {
-			return redirect()->to(previous_url());
-		}
+		$id 				= $this->session->id_siswa_login;
+		$data = ([
+			'active' 		=> "Home",
+			'title' 		=> "Dashboard",
+			'saya' 			=> $this->siswaModel->find($id),
+			'edukasi' 		=> $this->edukasiModel->orderBy('id', 'RANDOM')->first(),
+			'list_edukasi'  => $this->edukasiModel->findAll(2)
 
-		$data['active'] 		= "Home";
-		$data['title']  		= "Dashboard";
-		$id 					= $this->session->id_siswa_login;
-		$data['saya']  			= $this->siswaModel->find($id);
-		$data['edukasi']  		= $this->edukasiModel->orderBy('id', 'RANDOM')->first();
-		$data['list_edukasi']   = $this->edukasiModel->findAll(2);
-		// DD($data);
+		]);
 		return view('siswa/dashboard', $data);
 	}
 
-	//--------------------------------------------------------------------
-	//VIEW DAFTAR - SISWA
-	//--------------------------------------------------------------------
-	public function daftar()
+
+	public function edukasi_siswa()
 	{
-		$data['title'] = "Daftar Siswa";
-		return view('register', $data);
+
+		$data['active']       = "Home";
+		$data['title']        = "Edukasi";
+		$data['list_edukasi'] = $this->edukasiModel->orderBy('id', 'RANDOM')->findAll();
+		// dd($data);
+		return view('siswa/edukasi', $data);
 	}
 
 	//--------------------------------------------------------------------
@@ -53,15 +47,6 @@ class SiswaController extends BaseController
 	//--------------------------------------------------------------------
 	public function profile_saya()
 	{
-		if (isset($_SESSION['is_login'])) {
-
-			if ($_SESSION['is_login'] == 'admin') {
-				return redirect()->to(previous_url());
-			}
-		} else {
-			return redirect()->to(previous_url());
-		}
-
 		$id = $this->session->id_siswa_login;
 		$data['title'] = "Profile Saya";
 		$data['active'] = "Profile";
@@ -97,7 +82,7 @@ class SiswaController extends BaseController
 	{
 		$email = $this->request->getPost('email');
 		$pass = $this->request->getPost('password');
-		// $akun = $this->db->query("SELECT * FROM siswa WHERE username='$user' AND password='$pass'")->getResultArray();
+		// $akun = $this->db->query("SELECT * FROM siswa WHERE nama='$user' AND password='$pass'")->getResultArray();
 
 		$akun = $this->siswaModel->where('email', $email)->first();
 
@@ -107,12 +92,12 @@ class SiswaController extends BaseController
 				$sesi_login = [
 					'id_siswa_login' => $akun->id,
 					'nis'            => $akun->nis,
-					'username'       => $akun->username,
+					'nama'       => $akun->nama,
 					'email'          => $akun->email,
 					'is_login'      => 'siswa'
 				];
 				$this->session->set($sesi_login);
-				$this->session->setFlashdata('msg_login', 'Selamat Datang Kembali ' . $akun->username);
+				$this->session->setFlashdata('msg_login', 'Selamat Datang Kembali ' . $akun->nama);
 				return redirect()->to(base_url('/siswa/dashboard'));
 			} else {
 				$this->session->setFlashdata('msg_err', 'Gagal Login !');
@@ -145,7 +130,7 @@ class SiswaController extends BaseController
 			//masukan data array ke variable
 			$data = ([
 				"nis"            => $nis,
-				"username"       => $nama,
+				"nama"       => $nama,
 				"kelas"       	 => $kelas,
 				"jurusan"        => $jurusan,
 				"email"          => $email,
@@ -174,29 +159,7 @@ class SiswaController extends BaseController
 	//--------------------------------------------------------------------
 	public function delete_profile_siswa($id = FALSE)
 	{
-		if ($id == FALSE) {
-
-			$deleteAll = $this->siswaModel->query("DELETE FROM siswa");
-			if ($deleteAll) {
-
-				$this->session->setFlashdata("msg_suc", "Berhasil membersihkan data profile siswa !");
-				return redirect()->to(previous_url());
-			} else {
-				$this->session->setFlashdata("msg_err", "Gagal membersihkan data profile siswa !");
-				return redirect()->to(previous_url());
-			}
-		} else {
-
-			$delete = $this->siswaModel->delete($id);
-
-			if ($delete) {
-				$this->session->setFlashdata("msg_suc", "Profile siswa telah dihapus !");
-				return redirect()->to(previous_url());
-			} else {
-				$this->session->setFlashdata("msg_err", "Profile siswa gagal dihapus !");
-				return redirect()->to(previous_url());
-			}
-		}
+		return $this->siswaModel->deleteData($id);
 	}
 
 	//--------------------------------------------------------------------
@@ -217,7 +180,7 @@ class SiswaController extends BaseController
 		//masukan data array ke variable
 		$data = ([
 			"nis"            => $nis,
-			"username"       => $nama,
+			"nama"       => $nama,
 			"kelas"       	 => $kelas,
 			"jurusan"        => $jurusan,
 			"email"          => $email,
@@ -226,14 +189,7 @@ class SiswaController extends BaseController
 		]);
 
 		//eksekusi data ke database
-		$tambah = $this->siswaModel->update($id, $data);
-		if ($tambah) {
-			$this->session->setFlashdata('msg_suc', 'Pendaftaran siswa berhasil !');
-			return redirect()->to(previous_url());
-		} else {
-			$this->session->setFlashdata('msg_err', 'Gagal mendaftar, Silahkan coba lagi atau hubungi Admin !');
-			return redirect()->to(previous_url());
-		}
+		return $this->siswaModel->updateData($id, $data);
 	}
 
 	//--------------------------------------------------------------------

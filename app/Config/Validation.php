@@ -21,16 +21,6 @@ class Validation
 		\CodeIgniter\Validation\CreditCardRules::class,
 	];
 
-
-	// public $validasi_daftar = [
-	// 	"nis"           => 'required|min_length[5]|max_length[20]',
-	// 	"username"      => 'required|min_length[5]|max_length[20]',
-	// 	"email"         => 'required|min_length[6]|max_length[50]|valid_email|is_unique[siswa.email]',
-	// 	"kelas"         => 'required|min_length[1]|max_length[2]',
-	// 	"jurusan"       => 'required',
-	// 	"jenis_kelamin" => 'required',
-	// 	"alamat"        => 'required'
-	// ];
 	/**
 	 * Specifies the views that are used to display the
 	 * errors.

@@ -172,8 +172,7 @@
                         endif ?>">
               <a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> Profile</a>
             </li>
-            <li class="<?php if ($active == "Lainnya") : echo "active ";
-                        endif ?>">
+            <li class="<?= ($active == "Lainnya") ? "active" : false; ?>">
               <a data-toggle="tab" href="#Lainnya"><i class="notika-icon notika-app"></i> Lainnya</a>
             </li>
           </ul>

@@ -48,7 +48,7 @@
                         </div>
                         <div class="contact-ctn">
                             <div class="contact-ad-hd">
-                                <h2><?= $profile_saya->username ?></h2>
+                                <h2><?= $profile_saya->nama ?></h2>
                                 <p class="ctn-ads"><?= $profile_saya->alamat ?></p>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="contact-ctn">
                             <div class="contact-ad-hd">
-                                <h2><?= $profile_saya->username ?></h2>
+                                <h2><?= $profile_saya->nama ?></h2>
                                 <p class="ctn-ads"><?= $profile_saya->alamat ?></p>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
             <form action="<?= base_url() ?>/proses/edit-password-siswa" method="post">
                 <div class="modal-body">
                     <center style="margin-bottom:30px" class="mg-b-20">
-                        <h4>Edit Password <?= $profile_saya->username ?> </h4>
+                        <h4>Edit Password <?= $profile_saya->nama ?> </h4>
                     </center>
                     <div class="form-example-int form-horizental">
                         <div class="form-group">

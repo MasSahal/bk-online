@@ -50,11 +50,11 @@
                                 foreach ($list_edukasi as $le) { ?>
                                     <tr>
                                         <td><?= $i += 1 ?></td>
-                                        <td><?= $le->judul ?></td>
+                                        <td><a href="<?= base_url('/admin/data-edukasi/view/' . $le->id_pemutaran) ?>" class="text-link" style="pading:100%"><?= $le->judul ?></a></td>
                                         <td>
-                                            <a href="<?= base_url('/admin/data-edukasi-view/' . $le->id) ?>" class="badge badge-success">Lihat Detail</a>
-                                            <a href="<?= base_url('/admin/data-edukasi-view-edit/' . $le->id) ?>" class="badge badge-warning">Edit</a>
-                                            <a href="#" data-toggle="modal" data-target="#hapus_<?= $le->id ?>" class="badge badge-danger">Hapus</a>
+                                            <!-- <a href="<?= base_url('/admin/data-edukasi-view/' . $le->id) ?>" class="badge badge-success">Lihat Detail</a> -->
+                                            <a href="<?= base_url('/admin/data-edukasi/view-edit/' . $le->id_pemutaran) ?>" class="badge badge-warning"><i class="notika-icon notika-edit"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#hapus_<?= $le->id ?>" class="badge badge-danger"><i class="notika-icon notika-trash"></i></a>
                                         </td>
                                     </tr>
 
@@ -106,11 +106,10 @@
                         </div>
                         <div class="inbox-status">
                             <ul class="inbox-st-nav">
+                                <li><a href="<?= base_url('/admin/data-tambah-edukasi/') ?>"><i class="notika-icon notika-draft"></i> Tambah</a></li>
                                 <li><a href="<?= base_url('/admin/data-edukasi/') ?>"><i class="notika-icon notika-menus"></i> List Materi</a></li>
-                                <li><a href="<?= base_url('/admin/data-tambah-edukasi/') ?>"><i class="notika-icon notika-edit"></i> Tambah</a></li>
                                 <li><a href="#" data-toggle="modal" data-target="#reset_edukasi"><i class="notika-icon notika-trash"></i> Hapus Semua</a></li>
-                                <!-- <li><a href="#" data-toggle="modal" data-target="#tag_<?     ?>"><i class="notika-icon notika-flag"></i> Tag</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="settings_<?    ?>"><i class="notika-icon notika-settings"></i> Settings</a></li> -->
+                                <!-- <li><a href="#" data-toggle="modal" data-target="#tag_<?     ?>"><i class="notika-icon notika-flag"></i> Tag</a></li> --->
                             </ul>
                         </div>
                     </div>
@@ -184,6 +183,18 @@
                                 <div class="col-lg-10 col-md-7 col-sm-7 col-xs-12">
                                     <div class="nk-int-st">
                                         <textarea name="deskripsi" class="form-control auto-size" placeholder="Masukan deskripsi materi" rows="10" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Tag</label>
+                                </div>
+                                <div class="col-lg-10 col-md-7 col-sm-7 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="text" neme="tag" data-role="tagsinput" id="tags_input">
                                     </div>
                                 </div>
                             </div>

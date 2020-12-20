@@ -13,24 +13,61 @@ class Konsultasi extends Model
         'nama',
         'subjek',
         'lampiran',
-        'deskripsi',
-        'tanggal'
+        'deskripsi'
     ];
     protected $returnType = 'object';
+    protected $useTimestamps = true;
+    protected $createdField  = 'created_at';
+    protected $updatedField  = false;
 
+    # Create Data
+    public function addData($data)
+    {
+        return $this->insert($data);
+    }
 
-    // //validasi data
-    // protected $validationRules    = [
-    //     'nama'         => 'required|min_length[3]',
-    //     'subjek'       => 'required|min_length[3]',
-    //     'deskripsi'    => 'required|min_length[3]',
-    //     'nama'         => 'required|min_length[3]',
-    // ];
+    # Read Data
+    public function getData($id = FALSE)
+    {
+        if ($id == FALSE) {
+            return $this->findAll();
+        } else {
+            return $this->where('id_pemutaran', $id)->first();
+        }
+    }
 
-    // //pesan validasi data
-    // protected $validationMessages = [
-    //     'nama'        => [
-    //         'required' => 'Wajib di isi !s'
-    //     ]
-    // ];
+    public function getDataByDateName($tgl_awal, $tgl_akhir, $nama)
+    {
+        $query = "SELECT * FROM $this->table WHERE created_at >='$tgl_awal' AND created_at <='$tgl_akhir' AND nama='$nama' ORDER BY created_at ASC";
+        $data = $this->db->query($query)->getResultObject();
+        return $data;
+    }
+
+    public function getDataByDate($tgl_awal, $tgl_akhir)
+    {
+        $query = "SELECT * FROM $this->table WHERE created_at >='$tgl_awal' AND created_at <='$tgl_akhir' ORDER BY created_at ASC";
+        $data = $this->db->query($query)->getResultObject();
+        return $data;
+    }
+
+    public function getDataByName($nama)
+    {
+        return $this->where('nama', $nama)->orderBy('created_at', 'ASC')->find();
+    }
+
+    # Update Data
+    public function updateData($id, $data)
+    {
+        return $this->update($id, $data);
+    }
+
+    # Delete Data berdasarkan id pemutaran
+    public function deleteData($id = FALSE)
+    {
+        if ($id == FALSE) {
+            return $this->db->query("DELETE FROM konsultasi");
+        } else {
+            return $this->delete($id);
+        }
+    }
 }

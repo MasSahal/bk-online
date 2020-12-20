@@ -10,73 +10,92 @@
   <!-- faviconF
 		============================================ -->
   <link rel="shortcut icon" type="<?= base_url("") ?>/assets/image/x-icon" href="<?= base_url("") ?>/assets/img/favicon.ico">
-  <!-- Google Fonts
+
+  <div class="style">
+    <!-- Google Fonts
+      ============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/bootstrap.min.css">
+    <!-- Font Awesome
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/font-awesome.min.css">
+    <!-- owl.carousel CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/owl.theme.css">
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/owl.transitions.css">
+    <!-- meanmenu CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/meanmenu/meanmenu.min.css">
+    <!-- animate CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/animate.css">
+    <!-- normalize CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/normalize.css">
+    <!-- mCustomScrollbar CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- notika icon CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/notika-custom-icon.css">
+    <!-- summernote CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/summernote/summernote.css">
+    <!-- Range Slider CSS
 		============================================ -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
-  <!-- Bootstrap CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/bootstrap.min.css">
-  <!-- Font Awesome
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/font-awesome.min.css">
-  <!-- owl.carousel CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/owl.carousel.css">
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/owl.theme.css">
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/owl.transitions.css">
-  <!-- meanmenu CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/meanmenu/meanmenu.min.css">
-  <!-- animate CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/animate.css">
-  <!-- normalize CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/normalize.css">
-  <!-- mCustomScrollbar CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/scrollbar/jquery.mCustomScrollbar.min.css">
-  <!-- notika icon CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/notika-custom-icon.css">
-  <!-- summernote CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/summernote/summernote.css">
-  <!-- bootstrap select CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/bootstrap-select/bootstrap-select.css">
-  <!-- Data Table JS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/jquery.dataTables.min.css">
-  <!-- wave CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/wave/waves.min.css">
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/wave/button.css">
-  <!-- dialog CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/dialog/sweetalert2.min.css">
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/dialog/dialog.css">
-  <!-- main CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/main.css">
-  <!-- style Ckeditor CSS
-    ============================================ -->
-  <!-- <link rel="stylesheet" type="text/css" href="<?= base_url("") ?>/assets/styles_ckeditor.css"> -->
-  <!-- style CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/style.css">
-  <!-- responsive CSS
-		============================================ -->
-  <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/responsive.css">
-  <!-- modernizr JS
-		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/vendor/modernizr-2.8.3.min.js"></script>
-  <!-- jquery
-		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/vendor/jquery-1.12.4.min.js"></script>
-  <!-- Charts JS
-		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/charts/Chart.js"></script>
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/themesaller-forms.css">
+    <!-- bootstrap select CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/bootstrap-select/bootstrap-select.css">
+    <!-- datapicker CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/datapicker/datepicker3.css">
+    <!-- Tag input CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/bootstrap-tagsinput.css">
+    <!-- Data Table JS
+      ============================================ -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css"> -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/jquery.dataTables.min.css">
+    <!-- wave CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/wave/waves.min.css">
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/wave/button.css">
+    <!-- dialog CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/dialog/sweetalert2.min.css">
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/dialog/dialog.css">
+    <!-- main CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/main.css">
+    <!-- style Ckeditor CSS
+      ============================================ -->
+    <!-- <link rel="stylesheet" type="text/css" href="<?= base_url("") ?>/assets/styles_ckeditor.css"> -->
+    <!-- style CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/style.css">
+    <!-- responsive CSS
+      ============================================ -->
+    <link rel="stylesheet" href="<?= base_url("") ?>/assets/css/responsive.css">
+    <!-- modernizr JS
+      ============================================ -->
+    <script src="<?= base_url("") ?>/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- jquery
+      ============================================ -->
+    <!-- <script src="<?= base_url("") ?>/assets/js/vendor/jquery-3.5.1.min.js"></script> -->
+    <script src="<?= base_url("") ?>/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Charts JS
+      ============================================ -->
+    <script src="<?= base_url("") ?>/assets/js/charts/Chart.js"></script>
+    <!--  Chat JS
+      ============================================ -->
+    <script src="<?= base_url("") ?>/assets/js/dialog/sweetalert2.min.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/jquery.emojiFace.js"></script>
+  </div>
 </head>
 
 <body onload="startTime()">
@@ -117,23 +136,21 @@
                   <ul class="collapse dropdown-header-top">
                     <li><a href="<?= base_url("") ?>/admin/dashboard">Dashboard</a>
                     </li>
-                    <li><a href="<?= base_url("") ?>/admin/data-edukasi">Edukasi</a>
-                    </li>
-                    <li>
-                      <!-- <a href="<?= base_url("") ?>/admin/data-layanan-klasikal">Layanan Klasikal</a> -->
-                      <a href="" class="construction">Layanan Klasikal</a>
+                    <li><a href="<?= base_url("") ?>/admin/data-edukasi">Daftar Kunjungan</a>
                     </li>
                   </ul>
                 </li>
                 <li><a data-toggle="collapse" data-target="#demoevent" href="#">Program</a>
                   <ul id="demoevent" class="collapse dropdown-header-top">
+                    <li><a href="<?= base_url("") ?>/admin/data-edukasi">Edukasi</a>
+                    </li>
                     <li><a href="<?= base_url("") ?>/admin/data-konsultasi">Konsultasi</a>
                     </li>
                     <li><a href="<?= base_url("") ?>/admin/data-pengaduan">Pengaduan</a>
                     </li>
-                    <li><a href="<?= base_url("") ?>/admin/data-pelanggaran">Riwayat Pelanggaran</a>
-                    </li>
-                    <li><a href="<?= base_url("") ?>/admin/data-pelanggaran-siswa">Pelanggaran Siswa</a>
+                    <li>
+                      <!-- <a href="<?= base_url("") ?>/admin/data-layanan-klasikal">Layanan Klasikal</a> -->
+                      <a href="" class="construction">Layanan Klasikal</a>
                     </li>
                   </ul>
                 </li>
@@ -147,6 +164,8 @@
                 </li>
                 <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Lainnya</a>
                   <ul id="Pagemob" class="collapse dropdown-header-top">
+                    <li><a href="<?= base_url("") ?>/admin/data-riwayat">Riwayat</a>
+                    </li>
                     <li><a href="<?= base_url("") ?>/admin/data-about">About</a>
                     </li>
                     <li><a href="<?= base_url("") ?>/admin/data-faq">FAQ</a>
@@ -191,24 +210,23 @@
               <ul class="notika-main-menu-dropdown">
                 <li><a href="<?= base_url("") ?>/admin/dashboard">Dashboard</a>
                 </li>
-                <li><a href="<?= base_url("") ?>/admin/data-edukasi">Edukasi</a>
-                </li>
-                <li>
-                  <!-- <a href="<?= base_url("") ?>/admin/data-layanan-klasikal">Layanan Klasikal</a> -->
-                  <a href="#" class="construction">Layanan Klasikal</a>
+                <li><a href="<?= base_url("") ?>/admin/data-riwayat">Daftar Kunjungan</a>
                 </li>
               </ul>
             </div>
             <div id="Program" class="<?php if ($active == "Program") : echo "active ";
                                       endif ?> tab-pane notika-tab-menu-bg animated flipInX">
               <ul class="notika-main-menu-dropdown">
+
+                <li><a href="<?= base_url("") ?>/admin/data-edukasi">Edukasi</a>
+                </li>
                 <li><a href="<?= base_url("") ?>/admin/data-konsultasi">Konsultasi</a>
                 </li>
                 <li><a href="<?= base_url("") ?>/admin/data-pengaduan">Pengaduan</a>
                 </li>
-                <li><a href="<?= base_url("") ?>/admin/data-pelanggaran">Jenis Pelanggaran</a>
-                </li>
-                <li><a href="<?= base_url("") ?>/admin/data-pelanggaran-siswa">Pelanggaran Siswa</a>
+                <li>
+                  <!-- <a href="<?= base_url("") ?>/admin/data-layanan-klasikal">Layanan Klasikal</a> -->
+                  <a href="" class="construction">Layanan Klasikal</a>
                 </li>
               </ul>
             </div>
@@ -224,6 +242,8 @@
             <div id="Lainnya" class="<?php if ($active == "Lainnya") : echo "active ";
                                       endif ?> tab-pane notika-tab-menu-bg animated flipInX">
               <ul class="notika-main-menu-dropdown">
+                <li><a href="<?= base_url("") ?>/admin/data-riwayat">Riwayat</a>
+                </li>
                 <li><a href="<?= base_url("") ?>/admin/data-about">About</a>
                 </li>
                 <li><a href="<?= base_url("") ?>/admin/data-faq">FAQ</a>
@@ -271,7 +291,6 @@
   </div>
 
   <!-- Start Content area-->
-  <?= $this->renderSection("title") ?>
   <div class="" style="min-height:380px !important;">
     <?= $this->renderSection("content") ?>
   </div>
@@ -291,141 +310,175 @@
   </div>
   <!-- End Footer area-->
 
-  <!-- bootstrap JS
+  <div>
+    <!-- bootstrap JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/bootstrap.min.js"></script>
-  <!-- wow JS
+    <script src="<?= base_url("") ?>/assets/js/bootstrap.min.js"></script>
+    <!-- wow JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/wow.min.js"></script>
-  <!-- price-slider JS
+    <script src="<?= base_url("") ?>/assets/js/wow.min.js"></script>
+    <!-- price-slider JS
 		============================================ -->
-  <!-- <script src="<?= base_url("") ?>/assets/js/jquery-price-slider.js"></script> -->
-  <!-- owl.carousel JS
+    <!-- <script src="<?= base_url("") ?>/assets/js/jquery-price-slider.js"></script> -->
+    <!-- owl.carousel JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/owl.carousel.min.js"></script>
-  <!-- scrollUp JS
+    <script src="<?= base_url("") ?>/assets/js/owl.carousel.min.js"></script>
+    <!-- scrollUp JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/jquery.scrollUp.min.js"></script>
-  <!-- meanmenu JS
+    <script src="<?= base_url("") ?>/assets/js/jquery.scrollUp.min.js"></script>
+    <!-- meanmenu JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/meanmenu/jquery.meanmenu.js"></script>
-  <!-- counterup JS
+    <script src="<?= base_url("") ?>/assets/js/meanmenu/jquery.meanmenu.js"></script>
+    <!-- counterup JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/counterup/jquery.counterup.min.js"></script>
-  <script src="<?= base_url("") ?>/assets/js/counterup/waypoints.min.js"></script>
-  <script src="<?= base_url("") ?>/assets/js/counterup/counterup-active.js"></script>
-  <!-- mCustomScrollbar JS
+    <script src="<?= base_url("") ?>/assets/js/counterup/jquery.counterup.min.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/counterup/waypoints.min.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/counterup/counterup-active.js"></script>
+    <!-- mCustomScrollbar JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-  <!-- autosize JS
+    <script src="<?= base_url("") ?>/assets/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- autosize JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/autosize.min.js"></script>
-  <!-- bootstrap select JS
+    <script src="<?= base_url("") ?>/assets/js/autosize.min.js"></script>
+    <!-- bootstrap select JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/bootstrap-select/bootstrap-select.js"></script>
-  <!-- Chosen JS
+    <script src="<?= base_url("") ?>/assets/js/bootstrap-select/bootstrap-select.js"></script>
+    <!-- Chosen JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/chosen/chosen.jquery.js"></script>
-  <!-- icheck JS
+    <script src="<?= base_url("") ?>/assets/js/chosen/chosen.jquery.js"></script>
+    <!-- Tag input JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/icheck/icheck.min.js"></script>
-  <script src="<?= base_url("") ?>/assets/js/icheck/icheck-active.js"></script>
-  <!-- knob JS
+    <script src="<?= base_url("") ?>/assets/js/bootstrap-tagsinput.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/bootstrap-tagsinput-active.js"></script>
+    <!-- icheck JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/knob/jquery.knob.js"></script>
-  <script src="<?= base_url("") ?>/assets/js/knob/jquery.appear.js"></script>
-  <script src="<?= base_url("") ?>/assets/js/knob/knob-active.js"></script>
-  <!-- summernote JS
+    <script src="<?= base_url("") ?>/assets/js/icheck/icheck.min.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/icheck/icheck-active.js"></script>
+    <!-- datapicker JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/summernote/summernote-updated.min.js"></script>
-  <script src="<?= base_url("") ?>/assets/js/summernote/summernote-active.js"></script>
-  <!--  wave JS
+    <script src="<?= base_url("") ?>/assets/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/datapicker/datepicker-active.js"></script>
+    <!-- knob JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/wave/waves.min.js"></script>
-  <script src="<?= base_url("") ?>/assets/js/wave/wave-active.js"></script>
-  <!--  todo JS
+    <script src="<?= base_url("") ?>/assets/js/knob/jquery.knob.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/knob/jquery.appear.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/knob/knob-active.js"></script>
+    <!-- summernote JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/todo/jquery.todo.js"></script>
-  <!-- plugins JS
+    <script src="<?= base_url("") ?>/assets/js/summernote/summernote-updated.min.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/summernote/summernote-active.js"></script>
+    <!--  wave JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/plugins.js"></script>
-  <!-- Data Table JS
+    <script src="<?= base_url("") ?>/assets/js/wave/waves.min.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/wave/wave-active.js"></script>
+    <!--  todo JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/data-table/jquery.dataTables.min.js"></script>
-  <script src="<?= base_url("") ?>/assets/js/data-table/data-table-act.js"></script>
-  <!--  Chat JS
+    <!-- <script src="<?= base_url("") ?>/assets/js/todo/jquery.todo.js"></script> -->
+    <!-- plugins JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/dialog/sweetalert2.min.js"></script>
-  <!--  Chat JS
+    <script src="<?= base_url("") ?>/assets/js/plugins.js"></script>
+    <!-- Data Table JS
+    ============================================ -->
+    <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script> -->
+    <script src="<?= base_url("") ?>/assets/js/data-table/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/data-table/data-table-act.js"></script>
+
+    <!--  Chat JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/chat/moment.min.js"></script>
-  <script src="<?= base_url("") ?>/assets/js/chat/jquery.chat.js"></script>
-  <!-- Login JS
+    <script src="<?= base_url("") ?>/assets/js/chat/moment.min.js"></script>
+    <script src="<?= base_url("") ?>/assets/js/chat/jquery.chat.js"></script>
+    <!-- Login JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/login/login-action.js"></script>
-  <!-- <script src="<?= base_url("") ?>/assets/js/charts/data-chart.js"></script> -->
-  <!-- main JS
+    <script src="<?= base_url("") ?>/assets/js/login/login-action.js"></script>
+    <!-- <script src="<?= base_url("") ?>/assets/js/charts/data-chart.js"></script> -->
+    <!-- main JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/main.js"></script>
-  <!-- tawk chat JS
+    <script src="<?= base_url("") ?>/assets/js/main.js"></script>
+    <!-- tawk chat JS
 		============================================ -->
-  <script src="<?= base_url("") ?>/assets/js/tawk-chat.js"></script>
-  <!-- tawk chat JS
+    <script src="<?= base_url("") ?>/assets/js/tawk-chat.js"></script>
+    <!-- tawk chat JS
       ============================================ -->
-  <!-- <script src="<?= base_url("") ?>/assets/js/ckeditor5/ckeditor.js"></script> -->
+    <!-- <script src="<?= base_url("") ?>/assets/js/ckeditor5/ckeditor.js"></script> -->
 
-  <!-- Notifikasi -->
-  <script>
-    <?php if (isset($_SESSION['msg_suc'])) { ?>
-      swal("Berhasil", "<?= $_SESSION["msg_suc"]; ?>", "success");
+    <!-- Notifikasi -->
+    <script>
+      <?php if (isset($_SESSION['msg_suc'])) { ?>
+        swal("Berhasil", "<?= $_SESSION["msg_suc"]; ?>", "success");
 
-    <?php } elseif (isset($_SESSION['msg_err'])) { ?>
-      swal("Terjadi Kesalahan", "<?= $_SESSION["msg_err"]; ?>", "warning");
+      <?php } elseif (isset($_SESSION['msg_err'])) { ?>
+        swal("Terjadi Kesalahan", "<?= $_SESSION["msg_err"]; ?>", "warning");
 
-    <?php } elseif (isset($_SESSION['msg_login'])) { ?>
-      swal({
-        title: 'Halo',
-        text: "<?= $_SESSION["msg_login"]; ?>",
-        imageUrl: "<?= base_url('/public/img/welcome.gif') ?>",
-        imageWidth: 300,
-        imageHeight: 150,
-        imageAlt: 'Wellcome'
-      });
+      <?php } elseif (isset($_SESSION['msg_login'])) { ?>
+        swal({
+          title: 'Halo',
+          text: "<?= $_SESSION["msg_login"]; ?>",
+          imageUrl: "<?= base_url('/public/img/welcome.gif') ?>",
+          imageWidth: 300,
+          imageHeight: 150,
+          imageAlt: 'Wellcome'
+        });
 
-    <?php } ?>
+      <?php } ?>
 
-    $('.construction').on('click', function() {
-      swal({
-        title: 'Oops',
-        text: 'This link under construction.',
-        imageUrl: '<?= base_url("/public/img/construction.gif") ?>',
-        imageWidth: 200,
-        imageHeight: 100,
-        imageAlt: 'Under Construction'
+      $('.construction').on('click', function() {
+        swal({
+          title: 'Oops',
+          text: 'This link under construction.',
+          imageUrl: '<?= base_url("/public/img/construction.gif") ?>',
+          imageWidth: 200,
+          imageHeight: 100,
+          imageAlt: 'Under Construction'
+        })
       })
-    })
-  </script>
-  <script>
-    function startTime() {
-      var today = new Date();
-      var h = today.getHours();
-      var m = today.getMinutes();
-      var s = today.getSeconds();
-      m = checkTime(m);
-      s = checkTime(s);
-      document.getElementById('realtime').innerHTML =
-        h + ":" + m + ":" + s;
-      var t = setTimeout(startTime, 500);
-    }
+    </script>
+    <script>
+      function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('realtime').innerHTML =
+          h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+      }
 
-    function checkTime(i) {
-      if (i < 10) {
-        i = "0" + i
-      }; // add zero in front of numbers < 10
-      return i;
-    }
-  </script>
-  <!-- <script>
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i
+        }; // add zero in front of numbers < 10
+        return i;
+      }
+    </script>
+    <script>
+      $(document).ready(function() {
+        $(".preloader").fadeOut();
+
+        //table click view
+        $('td[data-href]').on("click", function() {
+          document.location = $(this).data('href');
+        });
+
+        $(function() {
+          $('textarea').emojiInit();
+        })
+      })
+    </script>
+  </div>
+</body>
+
+</html>
+
+<!-- <script>
     ClassicEditor
       .create(document.querySelector('#ckeditor'), {
 
@@ -489,11 +542,3 @@
         console.error(error);
       });
   </script> -->
-  <script>
-    $(document).ready(function() {
-      $(".preloader").fadeOut();
-    })
-  </script>
-</body>
-
-</html>

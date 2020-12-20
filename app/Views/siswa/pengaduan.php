@@ -49,7 +49,7 @@
                                     <i class="notika-icon notika-support"></i>
                                 </div>
                                 <div class="nk-int-st">
-                                    <input type="text" class="form-control" name="nama_lengkap" placeholder="Full Name" required value="<?= $_SESSION['username'] ?>">
+                                    <input type="text" class="form-control" name="nama_lengkap" placeholder="Full Name" required value="<?= $_SESSION['nama'] ?>">
                                 </div>
                             </div>
                             <div class="form-group ic-cmp-int">

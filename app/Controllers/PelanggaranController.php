@@ -10,7 +10,7 @@ class PelanggaranController extends BaseController
     protected $session;
     public $siswaModel;
     public $pelanggaranModel;
-    public $riwayatpelanggaranModel;
+    public $riwayatKejadian;
 
     //--------------------------------------------------------------------
     //CONSTRUCT
@@ -55,7 +55,7 @@ class PelanggaranController extends BaseController
 
         $data['active']              = "Program";
         $data['title']               = "Pelanggaran";
-        $data['riwayat_pelanggaran'] = $this->riwayatpelanggaranModel->findAll();
+        $data['riwayat_pelanggaran'] = $this->riwayatKejadian->findAll();
         $data['saya']                = $this->siswaModel->where('id', $this->session->id_siswa_login)->first();
         // dd($data);
         return view('/siswa/riwayat-pelanggaran', $data);
@@ -64,23 +64,7 @@ class PelanggaranController extends BaseController
     //--------------------------------------------------------------------
     //VIEW DATA PELANGGARAN - ADMIN
     //--------------------------------------------------------------------
-    public function data_pelanggaran()
-    {
-        if (isset($_SESSION['is_login'])) {
-            if ($_SESSION['is_login'] == 'siswa') {
-                return redirect()->to(previous_url());
-            }
-        } else {
-            return redirect()->to(previous_url());
-        }
 
-        $data['active']           = "Program";
-        $data['title']            = "Data Pelanggaran";
-        $data['list_pelanggaran'] = $this->pelanggaranModel->findAll();
-        $data['pelanggaran']      = $this->pelanggaranModel->countAll();
-
-        return view('/admin/data-pelanggaran', $data);
-    }
 
     //--------------------------------------------------------------------
     //PROSES DELETE PELANGGARAN - SISWA/ADMIN
@@ -179,7 +163,7 @@ class PelanggaranController extends BaseController
 
         $data['active']              = "Program";
         $data['title']               = "Data Pelanggaran Siswa";
-        $data['riwayat_pelanggaran'] = $this->riwayatpelanggaranModel->findAll();
+        $data['riwayat_pelanggaran'] = $this->riwayatKejadian->findAll();
         $data['pelanggaran']         = $this->pelanggaranModel->findAll();
         $data['siswa']               = $this->siswaModel->findAll();
 
@@ -231,13 +215,13 @@ class PelanggaranController extends BaseController
 
             //input ke riwayat
             $data = ([
-                'siswa'             => $data_siswa->username,
+                'siswa'             => $data_siswa->nama,
                 'jenis_pelanggaran' => $data_pelanggaran->pelanggaran,
                 'poin_pelanggaran'  => $data_pelanggaran->poin_pelanggaran,
                 'catatan'           => $catatan
             ]);
 
-            $tambah_riwayat = $this->riwayatpelanggaranModel->insert($data);
+            $tambah_riwayat = $this->riwayatKejadian->insert($data);
             if ($tambah_riwayat) {
                 $this->session->setFlashdata("msg_suc", "Berhasil menambah data pelanggaran siswa !");
                 return redirect()->to(previous_url());

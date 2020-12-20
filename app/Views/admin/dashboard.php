@@ -8,6 +8,24 @@
                 <div class="box-content nk-green notika-shadow mg-t-30">
                     <div class="curved-inner-pro">
                         <div class="curved-ctn">
+                            <h2>Fitur Terbaru !</h2>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="jumbotron">
+                        <h2>Daftar Tamu</h2>
+                        <p>Mendata segala kunjungan ataupun kehadiran tamu yang terstruktur dengan rapih.</p>
+                        <hr class="my-2">
+                        <p>More info</p>
+
+                        <div class="text-right mt-4">
+                            <button type="button" id="tombol_tambah" class="btn btn-primary btn-lg notika-btn-primary">Selengkapnya</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-content nk-green notika-shadow mg-t-30">
+                    <div class="curved-inner-pro">
+                        <div class="curved-ctn">
                             <h2>Selamat Datang <?= $_SESSION['nama'] ?> Di Aplikasi Bk Online - Administrator</h2>
                             <hr>
                         </div>

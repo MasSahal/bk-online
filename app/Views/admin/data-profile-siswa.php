@@ -61,7 +61,7 @@
                         </div>
                         <div class="contact-ctn" style="min-height:200px !important">
                             <div class="contact-ad-hd">
-                                <h2><?= $s->username ?></h2>
+                                <h2><?= $s->nama ?></h2>
                                 <p class="ctn-ads"><?= $s->alamat ?></p>
                             </div>
                             <p>Saya adalah siswa SMK Informatika Al Irsyad Al Islamiyyah. Saya duduk di bangku kelas <?= $s->kelas ?> jurusan <?= $s->jurusan ?></p>
@@ -85,7 +85,7 @@
                         <div class="modal-content">
                             <div class="modal-body">
                                 <center>
-                                    <h4> Yakin ingin menghapus siswa "<span class="text-warning"><?= $s->username ?></span>" ?</h4>
+                                    <h4> Yakin ingin menghapus siswa "<span class="text-warning"><?= $s->nama ?></span>" ?</h4>
                                     <div class="my-3">
                                         <img src="<?= base_url("/public/img/alert.png") ?>" alt="alert1.png">
                                     </div>
@@ -109,7 +109,7 @@
                             <form action="<?= base_url() ?>/proses/edit-password-siswa" method="post">
                                 <div class="modal-body">
                                     <center style="margin-bottom:30px" class="mg-b-20">
-                                        <h4>Edit Password <?= $s->username ?> </h4>
+                                        <h4>Edit Password <?= $s->nama ?> </h4>
                                     </center>
                                     <div class="form-example-int form-horizental">
                                         <div class="form-group">
@@ -170,7 +170,7 @@
                             <form action="<?= base_url("") ?>/proses/edit-profile-siswa" method="post">
                                 <div class="modal-body">
                                     <center style="margin-bottom:30px" class="mg-b-20">
-                                        <h4>Edit Data Profile <?= $s->username ?> </h4>
+                                        <h4>Edit Data Profile <?= $s->nama ?> </h4>
                                     </center>
                                     <div class="form-example-int form-horizental">
                                         <div class="form-group">
@@ -196,7 +196,7 @@
                                                 </div>
                                                 <div class="col-lg-10 col-md-7 col-sm-7 col-xs-12">
                                                     <div class="nk-int-st">
-                                                        <input type="text" class="form-control" name="nama" placeholder="Nama lengkap" value="<?= $s->username ?>" required>
+                                                        <input type="text" class="form-control" name="nama" placeholder="Nama lengkap" value="<?= $s->nama ?>" required>
                                                     </div>
                                                 </div>
                                             </div>

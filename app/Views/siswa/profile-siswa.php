@@ -45,7 +45,7 @@
                         </div>
                         <div class="contact-ctn" style="min-height:200px !important">
                             <div class="contact-ad-hd">
-                                <h2><?= $s->username ?></h2>
+                                <h2><?= $s->nama ?></h2>
                                 <p class="ctn-ads"><?= $s->alamat ?></p>
                             </div>
                             <p>Saya adalah siswa SMK Informatika Al Irsyad Al Islamiyyah. Saya duduk di bangku kelas <?= $s->kelas ?> jurusan <?= $s->jurusan ?></p>
