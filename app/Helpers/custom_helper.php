@@ -11,13 +11,13 @@ function time_elapsed_string($datetime, $full = false)
     $diff->d -= $diff->w * 7;
 
     $string = array(
-        'y' => 'Tahun',
-        'm' => 'months',
-        'w' => 'Minggu',
-        'd' => 'Hari',
-        'h' => 'Jam',
-        'i' => 'Menit',
-        's' => 'Detik',
+        'y' => 'tahun',
+        'm' => 'bulan',
+        'w' => 'minggu',
+        'd' => 'hari',
+        'h' => 'jam',
+        'i' => 'menit',
+        's' => 'detik',
     );
     foreach ($string as $k => &$v) {
         if ($diff->$k) {
@@ -33,18 +33,11 @@ function time_elapsed_string($datetime, $full = false)
 
 function get_id_video($link)
 {
-    // www.youtube.com/watch?v=YsL4O47C-0k
-    // mendapatkan kode id video
-    if (strstr($link, 'v=')) {
-
-        $months = explode("=", $link);
-        return $months[1];
-    } else if (strstr($link, 'be/')) {
-
-        // youtu.be/YsL4O47C-0k
-        // mendapatkan kode id video
-        $months = explode("be/", $link);
-        return $months[1];
+    $get_link = preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $link, $match);
+    if ($get_link) {
+        return $match[1];
+    } else {
+        return false;
     }
 }
 
@@ -56,7 +49,7 @@ function get_small_char($char, $max)
         return substr($char, 0, $max) . " ...";
     }
 }
-function tanggal($date)
+function tanggal($date, bool $dash = TRUE)
 {
     $date_format = date('D, d M Y', strtotime($date));
     $days = explode(",", $date_format);
@@ -80,38 +73,47 @@ function tanggal($date)
 
     $months = explode(" ", $days[1]);
     if ($months[2] == "Jan") {
-        $bulan = "Januari";
+        $bulan = "Jan";
     } elseif ($months[2] == "Feb") {
-        $bulan = "Februari";
+        $bulan = "Feb";
     } elseif ($months[2] == "Mar") {
-        $bulan = "Maret";
+        $bulan = "Mar";
     } elseif ($months[2] == "Apr") {
-        $bulan = "April";
+        $bulan = "Apr";
     } elseif ($months[2] == "May") {
         $bulan = "Mei";
     } elseif ($months[2] == "Jun") {
-        $bulan = "Juni";
+        $bulan = "Jun";
     } elseif ($months[2] == "Jul") {
-        $bulan = "Juli";
+        $bulan = "Jul";
     } elseif ($months[2] == "Aug") {
-        $bulan = "Agustus";
+        $bulan = "Agt";
     } elseif ($months[2] == "Sep") {
-        $bulan = "September";
+        $bulan = "Sep";
     } elseif ($months[2] == "Oct") {
-        $bulan = "Oktober";
+        $bulan = "Okt";
     } elseif ($months[2] == "Nov") {
-        $bulan = "November";
+        $bulan = "Nov";
     } elseif ($months[2] == "Dec") {
-        $bulan = "Desember";
+        $bulan = "Des";
     } else {
         $bulan = "";
     }
 
     $tanggal = $months[1];
     $tahun = $months[3];
-    return "$hari, $tanggal $bulan $tahun";
+
+    if ($dash == FALSE) {
+        return "$hari $tanggal $bulan $tahun";
+    } else {
+        return "$hari, $tanggal $bulan $tahun";
+    }
 }
 
+function str_to_br($char)
+{
+    return str_replace(array("\r\n", "\r", "\n"), "<br/>", $char);
+}
 // function tanggal($date)
 // {
 //     return date('D, d M Y', strtotime($date));
@@ -175,4 +177,21 @@ function tanggal($date)
 //     $tanggal = $months[1];
 //     $tahun = $months[3];
 //     return "$hari, $tanggal $bulan $tahun";
+// }
+
+// function get_id_video($link)
+// {
+//     // www.youtube.com/watch?v=YsL4O47C-0k
+//     // mendapatkan kode id video
+//     if (strstr($link, 'v=')) {
+
+//         $months = explode("=", $link);
+//         return $months[1];
+//     } else if (strstr($link, 'be/')) {
+
+//         // youtu.be/YsL4O47C-0k
+//         // mendapatkan kode id video
+//         $months = explode("be/", $link);
+//         return $months[1];
+//     }
 // }

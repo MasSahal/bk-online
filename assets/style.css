@@ -59,6 +59,20 @@
   text-decoration: underline;
   cursor: pointer;
 } */
+
+p {
+  font-size: 14px !important;
+}
+
+.text-link {
+  color: #222;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+  color: #222 !important;
+}
+
 /* margin dan padding */
 .w-25 {
   width: 25% !important;
@@ -2115,6 +2129,7 @@ html,
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  font-size: small;
 }
 body {
   background: #f6f8fa;
@@ -3138,6 +3153,11 @@ a.badge-dark:focus {
 .bg-dark {
   background: rgba(0, 0, 0, 0.5);
 }
+
+.box-content-tamu {
+  padding: 20 50px;
+  background: #fff;
+}
 .right-bar,
 .box-content,
 .statistic-right-area,
@@ -3685,6 +3705,10 @@ ul.notika-menu-wrap li a {
   margin-bottom: 5px;
 }
 .box-content {
+  overflow: hidden;
+}
+
+.box-content-tamu {
   overflow: hidden;
 }
 .flot-chart-sts {
@@ -5906,6 +5930,12 @@ hr {
 .normal-table-list .table {
   margin-bottom: 0px;
 }
+
+.table thead {
+  color: #fff;
+  background: #bbbbbb;
+}
+
 .table.table-sc-ex > tbody > tr > td,
 .table.table-sc-ex > tbody > tr > th,
 .table.table-sc-ex > tfoot > tr > td,

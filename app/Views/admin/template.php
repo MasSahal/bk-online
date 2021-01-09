@@ -1,11 +1,12 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="id">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title><?= $title ?> | BK Online</title>
-  <meta name="description" content="">
+  <meta name="title" content="<?= $title ?> | BK Online">
+  <meta name="description" content="Halaman Admin Bk-Online">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- faviconF
 		============================================ -->
@@ -95,6 +96,10 @@
       ============================================ -->
     <script src="<?= base_url("") ?>/assets/js/dialog/sweetalert2.min.js"></script>
     <script src="<?= base_url("") ?>/assets/js/jquery.emojiFace.js"></script>
+    <!-- Tag input JS
+		============================================ -->
+    <script src="<?= base_url("") ?>/assets/js/bootstrap-tagsinput.js"></script>
+    <!-- <script src="<?= base_url("") ?>/assets/js/bootstrap-tagsinput-active.js"></script> -->
   </div>
 </head>
 
@@ -136,7 +141,7 @@
                   <ul class="collapse dropdown-header-top">
                     <li><a href="<?= base_url("") ?>/admin/dashboard">Dashboard</a>
                     </li>
-                    <li><a href="<?= base_url("") ?>/admin/data-edukasi">Daftar Kunjungan</a>
+                    <li><a href="<?= base_url("") ?>/admin/data-kunjungan">Daftar Kunjungan</a>
                     </li>
                   </ul>
                 </li>
@@ -187,35 +192,29 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-            <li class="<?php if ($active == "Home") : echo "active";
-                        endif ?>">
+            <li class="<?= ($active == "Home") ? "active" : "" ?>">
               <a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
             </li>
-            <li class="<?php if ($active == "Program") : echo "active";
-                        endif ?>">
+            <li class="<?= ($active == "Program") ? "active" : "" ?>">
               <a data-toggle="tab" href="#Program"><i class="notika-icon notika-edit"></i> Program</a>
             </li>
-            <li class="<?php if ($active == "Profile") : echo "active";
-                        endif ?>">
+            <li class="<?= ($active == "Profile") ? "active" : "" ?>">
               <a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> Profile</a>
             </li>
-            <li class="<?php if ($active == "Lainnya") : echo "active";
-                        endif ?>">
+            <li class="<?= ($active == "Lainnya") ? "active" : "" ?>">
               <a data-toggle="tab" href="#Lainnya"><i class="notika-icon notika-app"></i> Lainnya</a>
             </li>
           </ul>
           <div class="tab-content custom-menu-content">
-            <div id="Home" class=" <?php if ($active == "Home") : echo "active ";
-                                    endif ?> tab-pane in notika-tab-menu-bg animated flipInX">
+            <div id="Home" class="<?= ($active == "Home") ? "active" : "" ?> tab-pane in notika-tab-menu-bg animated flipInX">
               <ul class="notika-main-menu-dropdown">
                 <li><a href="<?= base_url("") ?>/admin/dashboard">Dashboard</a>
                 </li>
-                <li><a href="<?= base_url("") ?>/admin/data-riwayat">Daftar Kunjungan</a>
+                <li><a href="<?= base_url("") ?>/admin/data-kunjungan">Daftar Kunjungan</a>
                 </li>
               </ul>
             </div>
-            <div id="Program" class="<?php if ($active == "Program") : echo "active ";
-                                      endif ?> tab-pane notika-tab-menu-bg animated flipInX">
+            <div id="Program" class="<?= ($active == "Program") ? "active" : "" ?> tab-pane notika-tab-menu-bg animated flipInX">
               <ul class="notika-main-menu-dropdown">
 
                 <li><a href="<?= base_url("") ?>/admin/data-edukasi">Edukasi</a>
@@ -230,8 +229,7 @@
                 </li>
               </ul>
             </div>
-            <div id="Page" class="<?php if ($active == "Profile") : echo "active ";
-                                  endif ?> tab-pane notika-tab-menu-bg animated flipInX">
+            <div id="Page" class="<?= ($active == "Profile") ? "active" : "" ?> tab-pane notika-tab-menu-bg animated flipInX">
               <ul class="notika-main-menu-dropdown">
                 <li><a href="<?= base_url("") ?>/admin/data-profile-saya">Profil Saya</a>
                 </li>
@@ -239,8 +237,7 @@
                 </li>
               </ul>
             </div>
-            <div id="Lainnya" class="<?php if ($active == "Lainnya") : echo "active ";
-                                      endif ?> tab-pane notika-tab-menu-bg animated flipInX">
+            <div id="Lainnya" class="<?= ($active == "Lainnya") ? "active" : "" ?> tab-pane notika-tab-menu-bg animated flipInX">
               <ul class="notika-main-menu-dropdown">
                 <li><a href="<?= base_url("") ?>/admin/data-riwayat">Riwayat</a>
                 </li>
@@ -256,6 +253,26 @@
     </div>
   </div>
   <!-- Main Menu area End-->
+
+  <!-- Start Content area-->
+  <div class="content" style="min-height:380px !important;">
+    <?= $this->renderSection("content") ?>
+  </div>
+  <!-- End Content area-->
+
+  <!-- Start Footer area-->
+  <div class="footer-copyright-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="footer-copy-right">
+            <p>Copyright © 2020 BK Online - All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer area-->
 
   <!-- modal konfirmasi logout -->
   <div class="modal fade" id="logout" role="dialog">
@@ -289,26 +306,6 @@
       </center>
     </div>
   </div>
-
-  <!-- Start Content area-->
-  <div class="" style="min-height:380px !important;">
-    <?= $this->renderSection("content") ?>
-  </div>
-  <!-- End Content area-->
-
-  <!-- Start Footer area-->
-  <div class=" footer-copyright-area">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="footer-copy-right">
-            <p>Copyright © 2020 BK Online - All rights reserved.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Footer area-->
 
   <div>
     <!-- bootstrap JS
@@ -346,10 +343,7 @@
     <!-- Chosen JS
 		============================================ -->
     <script src="<?= base_url("") ?>/assets/js/chosen/chosen.jquery.js"></script>
-    <!-- Tag input JS
-		============================================ -->
-    <script src="<?= base_url("") ?>/assets/js/bootstrap-tagsinput.js"></script>
-    <script src="<?= base_url("") ?>/assets/js/bootstrap-tagsinput-active.js"></script>
+
     <!-- icheck JS
 		============================================ -->
     <script src="<?= base_url("") ?>/assets/js/icheck/icheck.min.js"></script>

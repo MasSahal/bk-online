@@ -35,12 +35,14 @@
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $edukasi->id_pemutaran ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <div class="mb-2 mt-4">
+                    <div class="mb-2 mt-3">
                         <h3><?= $edukasi->judul ?></h3>
-                        <?= $edukasi->author ?> | <?= date('D, d M Y', strtotime($edukasi->created_at)) ?>
+                        <small><?= $edukasi->author ?> | <?= tanggal($edukasi->created_at) ?></small>
                     </div>
                     <hr>
                     <p><?= str_replace(array("\r\n", "\r", "\n"), "<br/>", $edukasi->deskripsi) ?></p>
+                    <!-- <input type="text" class="form-control" name="tags" value="<?= $edukasi->tags ?>" diasbled> -->
+                    <p id="echo_tags"></p>
                 </div>
                 <div class="box-content notika-shadow mg-b-30" id="isi_komen">
                     <?= view('admin/data/komentar', $komentar); ?>
@@ -83,12 +85,10 @@
                                 </div>
                                 <hr>
                                 <div class="inbox-status">
-                                    <ul class="inbox-st-nav">
-                                        <li>
-                                            <span>Perubahan Terakhir</span>
-                                            <br>
-                                            <small><?= date('D, d M Y | h:i', strtotime($edukasi->updated_at)) ?></small>
-                                        </li>
+                                    <span>Perubahan Terakhir</span>
+                                    <br>
+                                    <small><?= date('D, d M Y | h:i', strtotime($edukasi->updated_at)) ?></small>
+                                    </li>
                                     </ul>
                                 </div>
                             </div>
@@ -161,8 +161,13 @@
 </div>
 
 
+
 <script>
+    var myInput = $('#echo_tags').tagify();
+    myInput.loadOriginalValues(<?= $edukasi->tags; ?>);
+
     $(document).ready(function() {
+
 
         //load data saat refresh halaman
         function komentar() {

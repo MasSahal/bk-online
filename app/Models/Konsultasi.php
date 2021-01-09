@@ -32,7 +32,7 @@ class Konsultasi extends Model
         if ($id == FALSE) {
             return $this->findAll();
         } else {
-            return $this->where('id_pemutaran', $id)->first();
+            return $this->where('id', $id)->first();
         }
     }
 
@@ -56,12 +56,12 @@ class Konsultasi extends Model
     }
 
     # Update Data
-    public function updateData($id, $data)
+    public function updateDibaca($id)
     {
-        return $this->update($id, $data);
+        return $this->update($id, array('status' => 'dibaca'));
     }
 
-    # Delete Data berdasarkan id pemutaran
+    # Delete Data berdasarkan id konsultasi
     public function deleteData($id = FALSE)
     {
         if ($id == FALSE) {

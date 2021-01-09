@@ -43,6 +43,35 @@ class AdminController extends BaseController
 	}
 
 	//--------------------------------------------------------------------
+	//METHOD KUNJUNGAN - DASHBOARD
+	//--------------------------------------------------------------------
+	public function data_kunjungan()
+	{
+		$data = ([
+			'active' 		=> "Home",
+			'title' 		=> "Data Kunjungan",
+			'kunjungan' 	=> $this->kunjunganModel->getData(),
+			'jml_kunjungan' 	=> $this->kunjunganModel->getDataToday(),
+		]);
+		return view('admin/data-kunjungan', $data);
+	}
+
+	public function tambah_data_kunjungan()
+	{
+		$data = ([
+			'nama'		 	=> $this->request->getPost('nama'),
+			'tujuan'		=> $this->request->getPost('tujuan'),
+			'catatan'		=> $this->request->getPost('catatan'),
+		]);
+		$this->kunjunganModel->addData($data);
+		echo json_encode($data);
+	}
+
+
+
+
+
+	//--------------------------------------------------------------------
 	//AUTH ADMIN
 	//--------------------------------------------------------------------
 	public function auth()
@@ -456,6 +485,60 @@ class AdminController extends BaseController
 
 
 	# EDUKASI
+
+	protected function filter_edukasi($nama = FALSE, $awal = FALSE, $akhir = FALSE)
+	{
+		$tgl_awal = date('Y-m-d H:i:s', strtotime($awal . " 00:00:00")); //filter ke date
+		$tgl_akhir = date('Y-m-d H:i:s', strtotime($akhir . " 23:59:59")); //filter ke date
+
+		# Jika semua di isi nilai
+		if ($nama != "" && $awal != "" && $akhir != "") {
+			$judul  		    = "Data Edukasi " . $nama . " dari " . tanggal($tgl_awal) . " sampai " . tanggal($tgl_akhir);
+			$edukasi			= $this->edukasiModel->getDataByDateName($tgl_awal, $tgl_akhir, $nama);
+			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+
+			# Jika nama kosong
+		} else if ($nama == "" && $awal != "" && $akhir != "") {
+			$judul  		    = "Data Konsultasi " . tanggal($tgl_awal) . " sampai " . tanggal($tgl_akhir);
+			$edukasi			= $this->edukasiModel->getDataByDate($tgl_awal, $tgl_akhir,);
+			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+
+			# Jika tanggal kosong
+		} else if ($nama != "" && $awal == "" && $akhir == "") {
+
+			$judul  		    = "Data Edukasi " . $nama;
+			$edukasi			= $this->edukasiModel->getDataByName($nama);
+			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+
+			# Jika tidak ada sama sekali
+		} else {
+			$judul 				= "Data Seluruh Edukasi";
+			$edukasi 			= $this->edukasiModel->getData();
+			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+		}
+
+		return array('judul' => $judul, 'edukasi' => $edukasi, 'tanggal' => $tanggal);
+	}
+
+	public function data_edukasi()
+	{
+		$nama 			= $this->request->getGet('nama');
+		$awal 			= $this->request->getGet('awal');
+		$akhir 			= $this->request->getGet('akhir');
+		$filter = $this->filter_edukasi($nama, $awal, $akhir);
+
+		$data = ([
+			'active' 		=> 'Program',
+			'title' 		=> 'Data Edukasi',
+			'nama' 			=> $nama,
+			'awal' 			=> $awal,
+			'akhir' 		=> $akhir,
+			'list_edukasi' 	=> $this->edukasiModel->findAll(),
+			'jml_edukasi' 	=> $this->edukasiModel->countAll(),
+		]);
+		return view('admin/data-edukasi', $data);
+	}
+
 	public function edukasi_view($id)
 	{
 		$data['active']       = "Program";
@@ -463,15 +546,6 @@ class AdminController extends BaseController
 		$data['edukasi']      = $this->edukasiModel->where('id', $id)->first();
 		// dd($data);
 		return view('siswa/edukasi-view', $data);
-	}
-
-	public function data_edukasi()
-	{
-		$data['active']       = "Program";
-		$data['title']        = "Data Edukasi";
-		$data['list_edukasi'] = $this->edukasiModel->findAll();
-		$data['jml_edukasi']  = $this->edukasiModel->countAll();
-		return view('admin/data-edukasi', $data);
 	}
 
 	public function data_edukasi_view($id_pemutaran)
@@ -517,9 +591,11 @@ class AdminController extends BaseController
 			if (empty($cek)) {
 				$data = ([
 					'id_pemutaran'  => $id_pemutaran,
+					'author'        => $this->session->nama,
 					'judul'         => $this->request->getPost('judul'),
 					'link_video'    => $link_video,
 					'deskripsi'     => $this->request->getPost('deskripsi'),
+					'tags'     		=> $this->request->getPost('tags'),
 				]);
 
 				//buat riwayat
@@ -605,39 +681,170 @@ class AdminController extends BaseController
 		}
 	}
 
-	protected function filter_edukasi($nama = FALSE, $awal = FALSE, $akhir = FALSE)
+	public function data_edukasi_pdf()
 	{
-		$tgl_awal = date('Y-m-d H:i:s', strtotime($awal . " 00:00:00")); //filter ke date
-		$tgl_akhir = date('Y-m-d H:i:s', strtotime($akhir . " 23:59:59")); //filter ke date
+		$nama 			= $this->request->getGet('nama');
+		$awal 			= $this->request->getGet('awal');
+		$akhir 			= $this->request->getGet('akhir');
 
-		# Jika semua di isi nilai
-		if ($nama != "" && $awal != "" && $akhir != "") {
-			$judul  		    = "Data Konsultasi " . $nama . " dari " . tanggal($tgl_awal) . " sampai " . tanggal($tgl_akhir);
-			$edukasi			= $this->edukasiModel->getDataByDateName($tgl_awal, $tgl_akhir, $nama);
-			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+		$filter = $this->filter_edukasi($nama, $awal, $akhir);
+		$nama_file = strtolower(date('Y_m_d') . "_" . str_replace(" ", "_", $filter['judul']));
+		$html = view('admin/data/export_edukasi', $filter);
+		$this->dompdf->loadHtml($html);
+		$this->dompdf->render();
 
-			# Jika nama kosong
-		} else if ($nama == "" && $awal != "" && $akhir != "") {
-			$judul  		    = "Data Konsultasi " . tanggal($tgl_awal) . " sampai " . tanggal($tgl_akhir);
-			$edukasi			= $this->edukasiModel->getDataByDate($tgl_awal, $tgl_akhir,);
-			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+		//buat riwayat
+		$riwayat = ([
+			'nama' 		=> $this->session->nama,
+			'subjek' 	=> 'Export data Edukasi ke Pdf',
+			'jenis' 	=> 'Export to pdf',
+			'role' 		=> 'Admin',
+			'catatan' 	=> "Mengekspor " . $filter['judul'] . " oleh " . $this->session->nama . " melalui halaman admin"
+		]);
+		$this->riwayatModel->addData($riwayat);
 
-			# Jika tanggal kosong
-		} else if ($nama != "" && $awal == "" && $akhir == "") {
+		$this->dompdf->stream($nama_file);
+	}
 
-			$judul  		    = "Data Konsultasi " . $nama;
-			$edukasi			= $this->edukasiModel->getDataByName($nama);
-			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+	public function data_edukasi_excell()
+	{
+		$nama 			= $this->request->getGet('nama');
+		$awal 			= $this->request->getGet('awal');
+		$akhir 			= $this->request->getGet('akhir');
 
-			# Jika tidak ada sama sekali
-		} else {
-			$judul 				= "Data Seluruh Konsultasi";
-			$edukasi 			= $this->edukasiModel->getData();
-			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+		$filter = $this->filter_edukasi($nama, $awal, $akhir);
+		$nama_file = strtolower(date('Y_m_d') . "_" . str_replace(" ", "_", $filter['judul']));
+
+		$helper = new Sample();
+		if ($helper->isCli()) {
+			$helper->log($nama_file . PHP_EOL);
+
+			return;
+		}
+		// Create new Spreadsheet object
+		$spreadsheet = new Spreadsheet();
+
+		// Set document properties
+		$spreadsheet->getProperties()->setCreator($this->session->nama)
+			->setLastModifiedBy($this->session->nama)
+			->setTitle($filter['judul'])
+			->setCategory('Edukasi');
+
+		// tambah judul
+		$spreadsheet->setActiveSheetIndex(0)
+			->setCellValue('A1', $filter['judul']);
+
+		// font bold dan size 14
+		$style_judul = [
+			'font' => [
+				'size' => 16,
+				'bold' => true,
+			],
+			'alignment' => [
+				'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+				'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+			],
+		];
+
+		// bagian judul
+		$spreadsheet->getActiveSheet()
+			->getStyle('A1:G2')->applyFromArray($style_judul);
+		$spreadsheet->getActiveSheet()->mergeCells("A1:G2");
+
+		// bagian sub-judul
+		$isi_kolom = ['No', 'Judul', 'Author', 'Deskripsi', 'Link', 'Tags', 'Waktu'];
+		$spreadsheet->getActiveSheet()->getRowDimension('3')->setRowHeight(20);
+		$column = 1;
+		foreach ($isi_kolom as $field) {
+			// $changeSheet = $spreadSheet->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+			$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow($column, 3, $field);
+			$spreadsheet->getActiveSheet()
+				->getStyle('A3:G3')->applyFromArray([
+					'borders' =>  [
+						'outline' => [
+							'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+							'color' => ['rgb' => '1a1a2e'],
+						],
+					],
+					'fill' => [
+						'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+						'color' =>  ['argb' => '222831'],
+					],
+					'font' => [
+						'color' =>  ['argb' => \PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE],
+					],
+					'alignment' => [
+						'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+						'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+					],
+				]);
+			$column++;
 		}
 
-		return array('judul' => $judul, 'edukasi' => $edukasi, 'tanggal' => $tanggal);
+		// bagian isi
+		$kolom = 4;
+		$nomor = 0;
+		foreach ($filter['edukasi'] as $e) {
+			$spreadsheet->getActiveSheet()
+				->setCellValue('A' . $kolom, $nomor += 1)
+				->setCellValue('B' . $kolom, $e->judul)
+				->setCellValue('C' . $kolom, $e->author)
+				->setCellValue('D' . $kolom, $e->deskripsi)
+				->setCellValue('E' . $kolom, $e->link_video)
+				->setCellValue('F' . $kolom, $e->tags)
+				->setCellValue('G' . $kolom, $e->created_at);
+			$spreadsheet->getActiveSheet()
+				->getStyle('A' . $kolom . ':G' . $kolom)->applyFromArray([
+					'borders' =>  [
+						'outline' => [
+							'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+							'color' => ['rgb' => '1a1a2e'],
+						],
+					]
+				]);
+			$kolom++;
+		}
+
+		//Sesusikan width colum dengan isi
+		$spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+		$spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+		$spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+		$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(100);
+		$spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+		$spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+		$spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+		$spreadsheet->setActiveSheetIndex(0);
+
+		// Redirect output to a client’s web browser (Xlsx)
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $nama_file . '.xlsx"');
+		header('Cache-Control: max-age=0');
+		// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+
+		// If you're serving to IE over SSL, then the following may be needed
+		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+		header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header('Pragma: private'); // HTTP/1.0
+
+		//buat riwayat
+		$riwayat = ([
+			'nama' 		=> $this->session->nama,
+			'subjek' 	=> 'Export data edukasi ke Excell',
+			'jenis' 	=> 'Export to excell',
+			'role' 		=> 'Admin',
+			'catatan' 	=> "Mengekspor " . $filter['judul'] . " oleh " . $this->session->nama . " melalui halaman admin"
+		]);
+		$this->riwayatModel->addData($riwayat);
+
+
+		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+		$writer->save('php://output');
+		exit;
 	}
+
 
 
 	#EDUKASI KOMENTAR
@@ -990,32 +1197,65 @@ class AdminController extends BaseController
 		if ($nama != "" && $awal != "" && $akhir != "") {
 			$judul  		    = "Data Konsultasi " . $nama . " dari " . tanggal($tgl_awal) . " sampai " . tanggal($tgl_akhir);
 			$konsultasi			= $this->konsultasiModel->getDataByDateName($tgl_awal, $tgl_akhir, $nama);
-			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d'), false) . " pukul " . date('H:i');
 
 			# Jika nama kosong
 		} else if ($nama == "" && $awal != "" && $akhir != "") {
 			$judul  		    = "Data Konsultasi " . tanggal($tgl_awal) . " sampai " . tanggal($tgl_akhir);
 			$konsultasi			= $this->konsultasiModel->getDataByDate($tgl_awal, $tgl_akhir,);
-			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d'), false) . " pukul " . date('H:i');
 
 			# Jika tanggal kosong
 		} else if ($nama != "" && $awal == "" && $akhir == "") {
 
 			$judul  		    = "Data Konsultasi " . $nama;
 			$konsultasi			= $this->konsultasiModel->getDataByName($nama);
-			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d'), false) . " pukul " . date('H:i');
 
 			# Jika tidak ada sama sekali
 		} else {
 			$judul 				= "Data Seluruh Konsultasi";
 			$konsultasi 			= $this->konsultasiModel->getData();
-			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d')) . " pukul " . date('H:i');
+			$tanggal			= "Dibuat pada " . tanggal(date('y-m-d'), false) . " pukul " . date('H:i');
 		}
 
 		return array('judul' => $judul, 'konsultasi' => $konsultasi, 'tanggal' => $tanggal);
 	}
 
-	public function data_konsultasi()
+	public function data_konsultasi($id = FALSE)
+	{
+
+		if ($id == FALSE) {
+			$nama 			= $this->request->getGet('nama');
+			$awal 			= $this->request->getGet('awal');
+			$akhir 			= $this->request->getGet('akhir');
+			$filter = $this->filter_konsultasi($nama, $awal, $akhir);
+
+			$data = ([
+				'active' 			=> "Program",
+				'title' 			=> "Data Konsultasi",
+				'nama' 				=> $nama,
+				'awal' 				=> $awal,
+				'akhir' 			=> $akhir,
+				'list_siswa' 		=> $this->siswaModel->findAll(),
+				'judul' 			=> $filter['judul'],
+				'list_konsultasi' 	=> $filter['konsultasi'],
+				'jml_konsultasi' 	=> $this->siswaModel->countAll(),
+			]);
+			return view('/admin/data-konsultasi', $data);
+		} else {
+
+			$getData = $this->konsultasiModel->getData($id);
+
+			$data = ([
+				'active' 			=> "Program",
+				'title' 			=> "Data Konsultasi " . $getData->nama,
+				'konsultasi' 		=> $getData,
+			]);
+			return view('/admin/data-konsultasi-view', $data);
+		}
+	}
+	public function data_konsultasi_view($id)
 	{
 		$nama 			= $this->request->getGet('nama');
 		$awal 			= $this->request->getGet('awal');
@@ -1034,6 +1274,12 @@ class AdminController extends BaseController
 			'jml_konsultasi' 	=> $this->siswaModel->countAll(),
 		]);
 		return view('/admin/data-konsultasi', $data);
+	}
+
+	public function data_konsultasi_dibaca()
+	{
+		$id = $this->request->getPost('id');
+		$update = $this->konsultasiModel->updateDibaca($id);
 	}
 
 	public function delete_konsultasi($id_konsultasi = FALSE)
@@ -1059,9 +1305,24 @@ class AdminController extends BaseController
 			$image = $this->konsultasiModel->getData($id_konsultasi);
 			$name_image = $image->lampiran;
 
-			$delete_image = unlink('./public/konsultasi/' . $name_image);
+			if ($image->lampiran != 'none') {
+				$delete_image = unlink('./public/konsultasi/' . $name_image);
 
-			if ($delete_image) {
+				if ($delete_image) {
+					$delete = $this->konsultasiModel->deleteData($id_konsultasi);
+
+					if ($delete) {
+						$this->session->setFlashdata("msg_suc", "Konsultasi telah dihapus !");
+						return redirect()->to(previous_url());
+					} else {
+						$this->session->setFlashdata("msg_err", "Konsultasi gagal dihapus !");
+						return redirect()->to(previous_url());
+					}
+				} else {
+					$this->session->setFlashdata("msg_err", "Konsultasi gagal dihapus !");
+				}
+				return redirect()->to(previous_url());
+			} else {
 				$delete = $this->konsultasiModel->deleteData($id_konsultasi);
 
 				if ($delete) {
@@ -1071,9 +1332,6 @@ class AdminController extends BaseController
 					$this->session->setFlashdata("msg_err", "Konsultasi gagal dihapus !");
 					return redirect()->to(previous_url());
 				}
-			} else {
-				$this->session->setFlashdata("msg_err", "Konsultasi gagal dihapus !");
-				return redirect()->to(previous_url());
 			}
 		}
 	}

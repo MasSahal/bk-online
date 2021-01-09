@@ -1,7 +1,7 @@
 (function ($) {
   "use strict";
-  $("#data_1 .input-group.date").datepicker({
-    // todayBtn: "linked",
+  $("#date_pick .input-group.date").datepicker({
+    todayBtn: "linked",
     keyboardNavigation: false,
     forceParse: false,
     calendarWeeks: true,

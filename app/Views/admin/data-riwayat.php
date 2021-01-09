@@ -33,7 +33,7 @@
 </div>
 
 <!-- Start Sale Statistic area-->
-<div class="sale-statistic-area">
+<div class="box-content">
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 mt-2">
-                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="date_pick">
                                     <label>Tanggal Awal</label>
                                     <div class=" input-group date nk-int-st">
                                         <span class="input-group-addon"></span>
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 mt-2">
-                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="date_pick">
                                     <label>Tanggal Akhir</label>
                                     <div class=" input-group date nk-int-st">
                                         <span class="input-group-addon"></span>

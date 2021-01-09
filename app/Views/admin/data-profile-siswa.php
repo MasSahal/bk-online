@@ -57,7 +57,8 @@
                                 </span>
                                 <span data-toggle="tooltip" data-placement="left" title="Hapus">
                                     <a href="#" class=" btn btn-danger danger-icon-notika" data-toggle="modal" data-target="#hapus_<?= $s->id ?>"><i class="notika-icon notika-close"></i></a>
-                                </span></div>
+                                </span>
+                            </div>
                         </div>
                         <div class="contact-ctn" style="min-height:200px !important">
                             <div class="contact-ad-hd">

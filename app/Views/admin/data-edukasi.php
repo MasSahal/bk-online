@@ -32,8 +32,53 @@
 <div class="sale-statistic-area">
     <div class="container">
         <div class="row">
-
             <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                <div class="box-content notika-shadow mg-t-30">
+                    <div class="curved-inner-pro">
+                        <div class="curved-ctn">
+                            <h4>Filter Data Edukasi</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <form action="" method="GET" id="cari_data_riwayat">
+                        <div class=" row">
+                            <div class="col-lg-3 mt-2">
+                                <div class="form-group nk-datapk-ctm form-elet-mg">
+                                    <label>Nama</label>
+                                    <div class=" input-group nk-int-st">
+                                        <span class="input-group-addon"></span>
+                                        <input type="text" class="form-control" name="nama" placeholder="Masukan nama..." autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 mt-2">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="date_pick">
+                                    <label>Tanggal Awal</label>
+                                    <div class=" input-group date nk-int-st">
+                                        <span class="input-group-addon"></span>
+                                        <input type="text" class="form-control" name="awal" placeholder="yyyy/mm/dd" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 mt-2">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="date_pick">
+                                    <label>Tanggal Akhir</label>
+                                    <div class=" input-group date nk-int-st">
+                                        <span class="input-group-addon"></span>
+                                        <input type="text" class="form-control" name="akhir" placeholder="dd/mm/yyyy" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 mt-2">
+                                <!-- <label>&nbsp;</label> -->
+                                <div class="text-left mt-4">
+                                    <a href="<?= base_url('admin/data-riwayat'); ?>" class=" btn btn-success notika-btn-success">Refresh</a> &nbsp;
+                                    <button type="submit" class="btn btn-primary notika-btn-primary" id="tombol_cari_data"> Cari Data</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="box-content notika-shadow mg-tb-30">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover" id="data-table-basic">
@@ -84,9 +129,14 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="pt-3">
-                        <button type="button" class="btn btn-primary notika-btn-primary" data-toggle="modal" data-target="#tambah_edukasi">Tambah Materi</button> &nbsp;
-                        <button type="button" class="btn btn-warning notika-btn-warning" data-toggle="modal" data-target="#reset_edukasi">Reset Semua</button>
+                    <div class="pt-3 material-design-btn">
+                        <span data-toggle="tooltip" data-placement="bottom" title="Tambah data"><button type="button" class="btn btn-success notika-btn-success" data-toggle="modal" data-target="#tambah">Tambah</button></span>
+                        &nbsp;
+                        <span data-toggle="tooltip" data-placement="bottom" title="Reset semua data"><button type="button" class="btn btn-warning warning-icon-notika" data-toggle="modal" data-target="#reset">Reset All</button></span>
+                        &nbsp;
+                        <a href="<?= base_url('admin/data-edukasi-pdf?nama=' . $nama . '&awal=' . $awal . '&akhir=' . $akhir); ?>" target="_blank" class="btn btn-lightblue lightblue-icon-notika" data-toggle="tooltip" data-placement="bottom" title="Export to Pdf">Pdf</a>
+                        &nbsp;
+                        <a href="<?= base_url('admin/data-edukasi-excell?nama=' . $nama . '&awal=' . $awal . '&akhir=' . $akhir); ?>" target="_blank" class="btn btn-teal teal-icon-notika" data-toggle="tooltip" data-placement="bottom" title="Export to Excell">Excell</a>
                     </div>
                 </div>
             </div>
@@ -138,11 +188,10 @@
 </div>
 
 <!-- Modal tambah edukasi-->
-<div class="modal fade" id="tambah_edukasi" role="dialog">
+<div class="modal fade" id="tambah" role="dialog">
     <div class="modal-dialog modals-default" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -211,7 +260,7 @@
 </div>
 
 <!-- modal konfirmasi reset edukasi -->
-<div class="modal fade" id="reset_edukasi" role="dialog">
+<div class="modal fade" id="reset" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-body">

@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 mt-2">
-                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="date_pick">
                                     <label>Tanggal Awal</label>
                                     <div class=" input-group date nk-int-st">
                                         <span class="input-group-addon"></span>
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 mt-2">
-                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="date_pick">
                                     <label>Tanggal Akhir</label>
                                     <div class=" input-group date nk-int-st">
                                         <span class="input-group-addon"></span>
@@ -85,7 +85,7 @@
                 <div class="box-content notika-shadow mg-tb-30">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover" id="data-table-basic">
-                            <thead style="color:#fff;background:#bbbbbb">
+                            <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
@@ -105,21 +105,20 @@
                                                 <?= $r->nama ?>
                                             </span>
                                         </td>
-                                        <td data-href="<?= base_url('/admin/dashboard'); ?>">
-                                            <span>
+                                        <td>
+                                            <a href="<?= base_url('/admin/data-konsultasi-view/' . $r->id); ?>" class="text-link">
                                                 <?= get_small_char($r->subjek, 20); ?>
-                                            </span>
+                                            </a>
                                         </td>
                                         <td><?= tanggal($r->created_at) ?></td>
                                         <td id="no-link">
                                             <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#hapus_<?= $r->id ?>"><i class="fa fa-trash-o"></i></button>
-                                            <?php if ($r->status == 'dibaca') {; ?>
-                                                <button type="button" class="badge badge-success badge-disabled" data-toggle="tooltip" data-placement="bottom" title="Sudah di baca" disabled><i class="fa fa-check" aria-hidden="true"></i></button>
-                                            <?php } else { ?>
-                                                <span data-toggle="tooltip" data-placement="bottom" title="Tandai sudah di baca"><button type="button" class="badge badge-success" data-toggle="modal" data-target="#"><i class="fa fa-check" aria-hidden="true"></i></button></span>
-
-                                            <?php } ?>
                                             <button type="button" class="badge badge-default" data-toggle="modal" data-target="#detail_<?= $r->id ?>"><i class="fa fa-eye"></i></button>
+                                            <?php if ($r->status != 'dibaca') {; ?>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="Tandai sudah di baca!">
+                                                    <button type="button" class="badge badge-success dibaca" data-toggle="modal" data-target="#dibaca_<?= $r->id ?>"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                </span>
+                                            <?php } ?>
                                         </td>
                                     </tr>
 
@@ -150,6 +149,26 @@
                                                 <!-- <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- modal konfirmasi dibaca -->
+                                    <div class="modal fade" id="dibaca_<?= $r->id ?>" role="dialog">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <center>
+                                                        <h4> Tandai telah dibaca konsultasi "<span class="text-warning"><?= $r->subjek ?></span>" ?</h4>
+                                                        <br><br>
+                                                    </center>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <center>
+                                                        <button type="button" data-dismiss="modal" class="btn btn-warning notika-btn-warning">Batalkan</button>
+                                                        <a href="<?= base_url("/proses/delete_konsultasi/" . $r->id)  ?>" class="btn btn-success notika-btn-success">Hapus</a>
+                                                    </center>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -307,4 +326,4 @@
         </div>
     </div>
 </div>
-<?= $this->endSection(""); ?>
+<?= $this->endSection(); ?>

@@ -31,7 +31,7 @@
 </div>
 
 <!-- Start Sale Statistic area-->
-<div class="sale-statistic-area">
+<div class="box-content">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">

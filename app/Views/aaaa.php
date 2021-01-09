@@ -1,5 +1,5 @@
 <!-- Start Sale Statistic area-->
-<div class="sale-statistic-area">
+<div class="box-content">
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">

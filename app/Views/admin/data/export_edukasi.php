@@ -15,11 +15,11 @@
     table {
         background-color: #fafafa;
         position: center;
-        font-size: 10;
+        font-size: 9;
     }
 
     .table tbody tr:nth-of-type(odd) {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: rgba(0, 0, 0, 0.15);
     }
 
     thead {
@@ -29,13 +29,6 @@
 
     .small {
         font-size: 8;
-    }
-
-    .medium {
-        font-size: 10;
-    }
-
-    .em-1 {
         margin-top: 1em;
     }
 </style>
@@ -45,30 +38,24 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th>Subjek</th>
-                <th>Status</th>
+                <th>Judul Materi</th>
+                <th>Author</th>
                 <th>Deskripsi</th>
-                <th>Waktu</th>
             </tr>
         </thead>
-        <tbody class="medium">
+        <tbody>
             <?php
             $i = 0;
-            foreach ($pengaduan as $r) : ?>
+            foreach ($edukasi as $r) : ?>
                 <tr>
                     <td><?= $i += 1 ?></td>
-                    <td><?= $r->nis_siswa ?></td>
-                    <td><?= $r->nama ?></td>
-                    <td><?= $r->subjek ?></td>
-                    <td><?= $r->status ?></td>
-                    <td><?= $r->deskripsi ?></td>
-                    <td><?= $r->created_at ?></td>
+                    <td><?= $r->judul ?></td>
+                    <td><?= $r->author ?></td>
+                    <td><?= str_to_br($r->deskripsi) ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>
     </table>
 </center>
 <br>
-<small class="small em-1"><?= $tanggal; ?></small>
+<small class="small"><?= $tanggal; ?></small>

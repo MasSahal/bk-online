@@ -28,11 +28,17 @@
     }
 
     .small {
-        margin-top: 1em;
         font-size: 8;
     }
-</style>
 
+    .medium {
+        font-size: 10;
+    }
+
+    .em-1 {
+        margin-top: 1em;
+    }
+</style>
 <center>
     <h2 class='text-center mb-4 mt-2'><?= $judul; ?></h2>
     <table class="table table-bordered" border="1" cellspacing="0" cellpadding="3" width="100%">
@@ -47,7 +53,7 @@
                 <th>Catatan</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="medium">
             <?php
             $i = 0;
             foreach ($riwayat as $r) : ?>
@@ -65,4 +71,4 @@
     </table>
 </center>
 <br>
-<small class="small"><?= $tanggal; ?></small>
+<small class="small em-1"><?= $tanggal; ?></small>

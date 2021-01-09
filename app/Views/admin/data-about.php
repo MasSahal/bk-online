@@ -30,6 +30,5 @@
             </div>
         </div>
     </div>
-</div>
-<!-- End Sale Statistic area-->
-<?= $this->endSection(""); ?>
+    <!-- End Sale Statistic area-->
+    <?= $this->endSection(""); ?>

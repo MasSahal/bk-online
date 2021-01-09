@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 mt-2">
-                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="date_pick">
                                     <label>Tanggal Awal</label>
                                     <div class=" input-group date nk-int-st">
                                         <span class="input-group-addon"></span>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 mt-2">
-                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                                <div class="form-group nk-datapk-ctm form-elet-mg" id="date_pick">
                                     <label>Tanggal Akhir</label>
                                     <div class=" input-group date nk-int-st">
                                         <span class="input-group-addon"></span>

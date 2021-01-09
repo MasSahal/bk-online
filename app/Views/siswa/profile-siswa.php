@@ -24,7 +24,7 @@
 </div>
 
 
-<div class="sale-statistic-area" style=" min-height:250px">
+<div class="box-content" style=" min-height:250px">
     <div class="container">
         <div class="row">
             <?php foreach ($list_siswa as $s) { ?>

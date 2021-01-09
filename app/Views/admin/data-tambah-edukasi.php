@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div class="sale-statistic-area">
+<div class="box-content">
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
@@ -52,20 +52,8 @@
                                     <div class="col-lg-10 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
                                             <input type="text" class="form-control" name="link_video" placeholder="Link Youtube" required>
-                                            <small>Hanya bisa memasukan video dari Youtube</small>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Tag</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-7 col-sm-7 col-xs-12">
-                                        <div class="nk-int-st">
-                                            <input type="text" class="form-control" name="tag" placeholder="Link Youtube" data-role="tagsinput" required>
-                                        </div>
+                                        <small>Hanya bisa memasukan video dari Youtube</small>
                                     </div>
                                 </div>
                             </div>
@@ -77,6 +65,19 @@
                                     <div class="col-lg-10 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
                                             <textarea name="deskripsi" class="form-control auto-size" placeholder="Masukan deskripsi materi" rows="10" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Tag</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-7 col-sm-7 col-xs-12">
+                                        <div class="nk-int-st">
+                                            <!-- <textarea name="tags" id="" class="form-control auto-size" rows="2"></textarea> -->
+                                            <input type="text" class="form-control" name="tags" placeholder="Tag materi" data-role="tagsinput" required>
                                         </div>
                                     </div>
                                 </div>

@@ -55,6 +55,7 @@ class BaseController extends Controller
 		$this->konsultasiModel 			= new \App\Models\Konsultasi();
 		$this->pelanggaranModel 		= new \App\Models\Pelanggaran();
 		$this->riwayatModel 			= new \App\Models\Riwayat();
+		$this->kunjunganModel 			= new \App\Models\Kunjungan();
 
 		$options 						= new \Dompdf\Options();
 		$options->set('defaultFont', 'helvetica');

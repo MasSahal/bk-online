@@ -75,7 +75,7 @@ $routes->post('/proses/tambah-data-edukasi', 'AdminController::tambah_data_eduka
 $routes->post('/proses/tambah-data-faq', 'AdminController::tambah_data_faq');
 
 $routes->post('/proses/kirim-konsultasi', 'AdminController::kirim_konsultasi');
-$routes->post('/proses/kirim-pengaduan', 'PengaduanController::kirim_pengaduan');
+$routes->post('/proses/kirim-pengaduan', 'AdminController::kirim_pengaduan');
 $routes->post('/proses/kirim-pelanggaran', 'PelanggaranController::kirim_pelanggaran');
 $routes->post('/proses/kirim-pelanggaran-siswa', 'PelanggaranController::kirim_pelanggaran_siswa');
 
@@ -111,7 +111,6 @@ $routes->post('/proses/view-data-edukasi-komentar-ajax/(:num)', 'AdminController
 $routes->get('/proses/data-riwayat-filter', 'AdminController::cari_data_riwayat');
 
 
-
 /**
  * --------------------------------------------------------------------
  * Route Admin
@@ -121,19 +120,24 @@ $routes->group('admin', ['filter' => 'ceklogin'], function ($routes) {
 	$routes->get('dashboard', 'AdminController::index');
 	$routes->get('data-edukasi', 'AdminController::data_edukasi');
 	$routes->get('data-tambah-edukasi', 'AdminController::tambah_edukasi_view');
+	$routes->get('data-kunjungan', 'AdminController::data_kunjungan');
 
-	$routes->get('data-edukasi/view/(:alphanum)', 'AdminController::data_edukasi_view/$1');
-	$routes->get('data-edukasi/view-edit/(:alphanum)', 'AdminController::data_edukasi_view_edit/$1');
+	$routes->get('data-edukasi/view/(:segment)', 'AdminController::data_edukasi_view/$1');
+	$routes->get('data-edukasi/view-edit/(:segment)', 'AdminController::data_edukasi_view_edit/$1');
 
 	$routes->get('data-konsultasi', 'AdminController::data_konsultasi');
+	$routes->get('data-konsultasi-view/(:num)', 'AdminController::data_konsultasi/$1');
+	$routes->post('data-konsultasi/dibaca', 'AdminController::data_konsultasi_dibaca');
 	$routes->get('data-pengaduan', 'AdminController::data_pengaduan');
 	$routes->get('data-pelanggaran', 'PelanggaranController::data_pelanggaran');
 	$routes->get('data-riwayat', 'AdminController::data_riwayat');
 	$routes->get('print-data-riwayat', 'AdminController::print_data_riwayat');
 
+	$routes->get('data-pengaduan-pdf', 'AdminController::data_pengaduan_pdf'); // data pengaduan to pdf
+	$routes->get('data-pengaduan-excell', 'AdminController::data_pengaduan_excell'); // data pengaduan to excell
 
-	$routes->get('data-pengaduan-pdf', 'AdminController::data_pengaduan_pdf'); // data konsultasi to pdf
-	$routes->get('data-pengaduan-excell', 'AdminController::data_pengaduan_excell'); // data konsultasi to excell
+	$routes->get('data-edukasi-pdf', 'AdminController::data_edukasi_pdf'); // data edukasi to pdf
+	$routes->get('data-edukasi-excell', 'AdminController::data_edukasi_excell'); // data edukasi to excell
 
 	$routes->get('data-konsultasi-pdf', 'AdminController::data_konsultasi_pdf'); // data konsultasi to pdf
 	$routes->get('data-konsultasi-excell', 'AdminController::data_konsultasi_excell'); // data konsultasi to excell
@@ -147,6 +151,8 @@ $routes->group('admin', ['filter' => 'ceklogin'], function ($routes) {
 
 	$routes->get('data-about', 'AdminController::data_about');
 	$routes->get('data-faq', 'AdminController::data_faq');
+
+	$routes->post('/admin/tambah-data-kunjungan', 'AdminController::tambah_data_kunjungan');
 });
 
 $routes->post('/admin/auth', 'AdminController::auth');

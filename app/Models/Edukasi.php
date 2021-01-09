@@ -13,7 +13,8 @@ class Edukasi extends Model
         'author',
         'judul',
         'link_video',
-        'deskripsi'
+        'deskripsi',
+        'tags'
     ];
     protected $returnType = 'object';
     protected $useTimestamps = true;
@@ -34,6 +35,25 @@ class Edukasi extends Model
         } else {
             return $this->where('id_pemutaran', $id_pemutaran)->first();
         }
+    }
+
+    public function getDataByDateName($tgl_awal, $tgl_akhir, $nama)
+    {
+        $query = "SELECT * FROM $this->table WHERE created_at >='$tgl_awal' AND created_at <='$tgl_akhir' AND judul='%$nama%' ORDER BY created_at ASC";
+        $data = $this->db->query($query)->getResultObject();
+        return $data;
+    }
+
+    public function getDataByDate($tgl_awal, $tgl_akhir)
+    {
+        $query = "SELECT * FROM $this->table WHERE created_at >='$tgl_awal' AND created_at <='$tgl_akhir' ORDER BY created_at ASC";
+        $data = $this->db->query($query)->getResultObject();
+        return $data;
+    }
+
+    public function getDataByName($nama)
+    {
+        return $this->like('judul', $nama)->orLike('author', $nama)->orderBy('created_at', 'ASC')->find();
     }
 
     # Update Data

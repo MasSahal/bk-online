@@ -5,10 +5,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
-                <div class="box-content nk-green notika-shadow mg-t-30">
+                <div class="box-content nk-green notika-shadow mg-t-30" id="tamu">
                     <div class="curved-inner-pro">
                         <div class="curved-ctn">
-                            <h2>Fitur Terbaru !</h2>
+                            <h2 id="fitur">Fitur Terbaru !</h2>
                             <hr>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                         <p>More info</p>
 
                         <div class="text-right mt-4">
-                            <button type="button" id="tombol_tambah" class="btn btn-primary btn-lg notika-btn-primary">Selengkapnya</button>
+                            <button type="button" onclick="openFullscreen()" id="tombol_tambah" class="btn btn-primary btn-lg notika-btn-primary">Selengkapnya</button>
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <!-- End Sale Statistic area-->
 <?= $this->endSection(""); ?>
